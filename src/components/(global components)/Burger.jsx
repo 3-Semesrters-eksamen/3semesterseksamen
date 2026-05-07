@@ -1,6 +1,6 @@
 import NavListe from "./NavListe";
 
-const Navigation = () => {
+const Burger = () => {
   return (
     <div>
       <NavListe />
@@ -8,4 +8,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default Burger;
