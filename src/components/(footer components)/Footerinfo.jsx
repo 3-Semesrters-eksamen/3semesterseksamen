@@ -1,22 +1,9 @@
-import SmallLogo from "../(globalComponents)/SamllLogo";
+import SmallLogo from "../(globalComponents)/SmallLogo";
 export default function FooterInfo() {
   return (
     <>
       {/* Logo */}
       <SmallLogo />
-
-      <p
-        style={{
-          fontSize: "0.6rem",
-          letterSpacing: "0.4em",
-          color: "rgba(255,255,255,0.38)",
-          textTransform: "uppercase",
-          fontWeight: 600,
-          margin: "0 0 36px",
-        }}
-      >
-        Have a good time
-      </p>
 
       <div className="nc-divider" />
 
