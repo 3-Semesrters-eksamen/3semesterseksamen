@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import HeaderContainer from "../components/(ForsideComponents)/WelcomeClub";
-import Navigation from "../components/(globalComponents)/Navigation";
+import Navigation from "@/components/(globalComponents)/Navigation";
 import WelcomeClub from "../components/(ForsideComponents)/WelcomeClub";
 import FeaturedEventsContainer from "@/components/(ForsideComponents)/FeaturedEventsContainer";
 import ClubGallery from "@/components/(ForsideComponents)/ClubGallery";
