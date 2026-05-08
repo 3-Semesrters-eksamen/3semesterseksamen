@@ -1,5 +1,5 @@
-const LoginContainer = () => {
-  return <div></div>;
-};
+import Login from "./Login";
 
-export default LoginContainer;
+export default function LoginContainer() {
+  return <Login />;
+}

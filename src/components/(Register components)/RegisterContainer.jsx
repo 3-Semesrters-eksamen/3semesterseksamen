@@ -1,5 +1,5 @@
-const RegisterContainer = () => {
-  return <div></div>;
-};
+import Register from "./Register";
 
-export default RegisterContainer;
+export default function RegisterContainer() {
+  return <Register />;
+}
