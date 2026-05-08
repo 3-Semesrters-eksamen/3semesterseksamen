@@ -1,6 +1,7 @@
+import SmallLogo from "@/components/(globalComponents)/SamllLogo.jsx";
 import NavListe from "./NavListe";
-import SmallLogo from "@/components/(globalComponents)/SmallLogo";
-import Burger from "@/components/(globalComponents)/Burger";
+
+import Burger from "./Burger";
 
 const Navigation = () => {
   return (
