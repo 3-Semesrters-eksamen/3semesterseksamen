@@ -34,3 +34,30 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Opsætning for Events landingpage.
+
+EventsPage
+├── HeroSection (EVENTS overskrift + baggrundsbillede)
+├── EventsList
+│ ├── EventCard (gentages 3 gange)
+│ │ ├── billede
+│ │ ├── titel
+│ │ ├── dato + scene
+│ │ ├── beskrivelse
+│ │ └── READ MORE knap (DecorativeBox)
+│ └── Pagination (1 2 3 næste >)
+└── Footer
+
+## Brugen af Btn komponentet
+
+import Button from "@/components/(globalComponents)/Button";
+
+// Som link der navigerer
+<Button href="/events" label="READ MORE" />
+
+// Som link med anden tekst
+<Button href="/book-table" label="BOOK TABLE" />
+
+// Som knap der kalder en funktion
+<Button onClick={() => setIsOpen(true)} label="SE MERE" />
