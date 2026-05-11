@@ -1,135 +1,37 @@
 export default function Register() {
   return (
-    <div className="register-body">
-      <div className="card">
-        <p className="brand">
-          NIGHT<span className="accent">CLUB</span> IS MEMBERS ONLY
+    <div
+      className="min-h-screen flex items-center justify-center p-8 px-4"
+      style={{
+        background: "radial-gradient(ellipse at top, #1a0a0a 0%, #0a0a0a 60%)",
+        fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+      }}
+    >
+      <div className="w-full max-w-[340px] border border-white/[0.07] rounded-[4px] px-8 py-10" style={{ background: "rgba(15, 5, 5, 0.85)" }}>
+        <p className="text-[0.78rem] font-bold tracking-[0.12em] text-white text-center mb-[0.6rem]">
+          NIGHT<span className="text-[#e8003a]">CLUB</span> IS MEMBERS ONLY
         </p>
-        <p className="subtitle">
+
+        <p className="text-[0.75rem] text-white/50 text-center mb-8 leading-[1.6]">
           Fill out the form below to
           <br />
           register a membership
         </p>
 
-        <div className="fields">
-          <input className="field" type="email" placeholder="Email" />
-          <input className="field" type="password" placeholder="Password" />
-          <input className="field" type="password" placeholder="Confirm password" />
-          <input className="field" type="tel" placeholder="Phone number" />
+        <div className="flex flex-col gap-3 mb-6">
+          <input className="w-full bg-transparent border border-white/15 rounded-sm text-white text-[0.82rem] tracking-wider px-4 py-[0.85rem] outline-none transition-colors duration-200 placeholder-white/30 focus:border-[#e8003a]" type="email" placeholder="Email" />
+          <input className="w-full bg-transparent border border-white/15 rounded-sm text-white text-[0.82rem] tracking-wider px-4 py-[0.85rem] outline-none transition-colors duration-200 placeholder-white/30 focus:border-[#e8003a]" type="password" placeholder="Password" />
+          <input className="w-full bg-transparent border border-white/15 rounded-sm text-white text-[0.82rem] tracking-wider px-4 py-[0.85rem] outline-none transition-colors duration-200 placeholder-white/30 focus:border-[#e8003a]" type="password" placeholder="Confirm password" />
+          <input className="w-full bg-transparent border border-white/15 rounded-sm text-white text-[0.82rem] tracking-wider px-4 py-[0.85rem] outline-none transition-colors duration-200 placeholder-white/30 focus:border-[#e8003a]" type="tel" placeholder="Phone number" />
         </div>
 
-        <div className="send-wrap">
-          <button className="send-btn">SEND</button>
+        <div className="flex justify-end">
+          <button className="bg-transparent border-none text-white text-[0.82rem] font-bold tracking-[0.14em] cursor-pointer px-0 py-[0.4rem] relative transition-colors duration-200 hover:text-[#e8003a] group">
+            SEND
+            <span className="absolute bottom-0 left-0 right-0 h-px bg-white/40 transition-colors duration-200 group-hover:bg-[#e8003a]" />
+          </button>
         </div>
       </div>
-
-      <style>{`
-        .register-body {
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: radial-gradient(ellipse at top, #1a0a0a 0%, #0a0a0a 60%);
-          padding: 2rem 1rem;
-          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        }
-
-        .card {
-          width: 100%;
-          max-width: 340px;
-          background: rgba(15, 5, 5, 0.85);
-          border: 1px solid rgba(255, 255, 255, 0.07);
-          border-radius: 4px;
-          padding: 2.5rem 2rem;
-        }
-
-        .brand {
-          font-size: 0.78rem;
-          font-weight: 700;
-          letter-spacing: 0.12em;
-          color: #fff;
-          text-align: center;
-          margin: 0 0 0.6rem;
-        }
-
-        .accent {
-          color: #e8003a;
-        }
-
-        .subtitle {
-          font-size: 0.75rem;
-          color: rgba(255, 255, 255, 0.5);
-          text-align: center;
-          margin: 0 0 2rem;
-          line-height: 1.6;
-        }
-
-        .fields {
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
-          margin-bottom: 1.5rem;
-        }
-
-        .field {
-          width: 100%;
-          box-sizing: border-box;
-          background: transparent;
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          border-radius: 2px;
-          color: #fff;
-          font-size: 0.82rem;
-          letter-spacing: 0.04em;
-          padding: 0.85rem 1rem;
-          outline: none;
-          transition: border-color 0.2s;
-        }
-
-        .field::placeholder {
-          color: rgba(255, 255, 255, 0.3);
-        }
-
-        .field:focus {
-          border-color: #e8003a;
-        }
-
-        .send-wrap {
-          display: flex;
-          justify-content: flex-end;
-        }
-
-        .send-btn {
-          background: transparent;
-          border: none;
-          color: #fff;
-          font-size: 0.82rem;
-          font-weight: 700;
-          letter-spacing: 0.14em;
-          cursor: pointer;
-          padding: 0.4rem 0;
-          position: relative;
-          transition: color 0.2s;
-        }
-
-        .send-btn::after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 1px;
-          background: rgba(255, 255, 255, 0.4);
-          transition: background 0.2s;
-        }
-
-        .send-btn:hover {
-          color: #e8003a;
-        }
-
-        .send-btn:hover::after {
-          background: #e8003a;
-        }
-      `}</style>
     </div>
   );
 }
