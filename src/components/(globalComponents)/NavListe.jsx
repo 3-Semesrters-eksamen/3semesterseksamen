@@ -4,7 +4,7 @@ const NavListe = () => {
   return (
     <ul className="flex flex-col lg:flex-row items-center gap-8 lg:gap-10">
       <li>
-        <Link href="/home">
+        <Link href="/">
           <div className="text-white text-sm tracking-widest hover:text-pink-500 transition-colors">HOME</div>
         </Link>
       </li>
@@ -14,12 +14,12 @@ const NavListe = () => {
         </Link>
       </li>
       <li>
-        <Link href="/book">
+        <Link href="/BookTable">
           <div className="text-white text-sm tracking-widest hover:text-pink-500 transition-colors">BOOK TABLE</div>
         </Link>
       </li>
       <li>
-        <Link href="/contact">
+        <Link href="/ContactUs">
           <div className="text-white text-sm tracking-widest hover:text-pink-500 transition-colors">CONTACT US</div>
         </Link>
       </li>
