@@ -1,32 +1,64 @@
-// Detailview.jsx
-import { events } from "@/components/(Events components)/EventArray";
 import Image from "next/image";
 
-const Detailview = ({ id }) => {
-  const event = events.find((e) => e.id === Number(id));
+const Detailview = async ({ slug }) => {
+  // Hent event fra API med slug
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/${slug}`);
+  const event = await res.json();
 
-  if (!event) return <p>Event ikke fundet</p>;
+  if (!event) return <p className="text-white">Event ikke fundet</p>;
 
   return (
-    <article className="flex flex-col lg:flex-row">
-      <div
-        className={`relative w-full lg:w-1/2 aspect-video lg:aspect-auto lg:min-h-[400px]
-        ${event.imageLeft ? "lg:order-1" : "lg:order-2"}`}
-      >
-        <Image src={event.image} alt={event.title} fill className="object-cover" />
+    <article className="bg-black text-white">
+      {/* Hero billede — fuld bredde */}
+      <div className="relative w-full h-64 lg:h-[500px]">
+        <Image src={`${process.env.NEXT_PUBLIC_API_URL}${event.heroAsset.url}`} alt={event.heroAsset.alt} fill className="object-cover brightness-75" />
       </div>
 
-      <div
-        className={`w-full lg:w-1/2 p-6 lg:p-12 flex flex-col justify-center bg-black
-        ${event.imageLeft ? "lg:order-2" : "lg:order-1"}`}
-      >
-        <h2 className="text-white text-xl lg:text-2xl font-bold tracking-widest mb-3">{event.title}</h2>
-        <p className="text-pink-500 text-sm tracking-widest mb-1">
-          {event.date} <span className="text-white">| {event.scene}</span>
+      {/* Indhold */}
+      <div className="container-base py-12">
+        {/* Titel + dato */}
+        <h1 className="text-2xl lg:text-3xl font-bold tracking-widest mb-2">{event.title}</h1>
+        <p className="text-pink-500 text-sm tracking-widest mb-8">
+          {new Date(event.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })} · {new Date(event.date).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}
+          <span className="text-white ml-2">| {event.location}</span>
         </p>
-        <p className="text-gray-300 text-sm leading-relaxed mt-4 mb-8">{event.longDescription}</p>
-        <p className="text-gray-300 text-sm leading-relaxed mt-4 mb-8">{event.price}</p>
-        <p className="text-gray-300 text-sm leading-relaxed mt-4 mb-8">{event.artist}</p>
+
+        {/* To kolonner — beskrivelse + detaljer */}
+        <div className="flex flex-col lg:flex-row gap-12">
+          {/* Venstre — beskrivelse */}
+          <div className="lg:w-2/3">
+            <p className="text-gray-300 text-sm leading-relaxed mb-6">{event.description}</p>
+            <p className="text-pink-500 text-xs tracking-widest uppercase mb-1">Important</p>
+            <p className="text-gray-300 text-sm">To enter: {event.ageLimit}</p>
+
+            {/* Knapper */}
+            <div className="flex gap-4 mt-8">
+              <Button href={`/BookTable?eventId=${event.id}`} label="BOOK NOW" />
+              <Button href="/Event" label="BACK TO EVENTS" />
+            </div>
+          </div>
+
+          {/* Højre — detaljer */}
+          <div className="lg:w-1/3 flex flex-col gap-6">
+            <div>
+              <p className="text-pink-500 text-xs tracking-widest uppercase mb-2">Location</p>
+              <p className="text-gray-300 text-sm">{event.location}</p>
+            </div>
+            <div>
+              <p className="text-pink-500 text-xs tracking-widest uppercase mb-2">Opening Hours</p>
+              <p className="text-gray-300 text-sm">Doors: {new Date(event.doorsOpen).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}</p>
+              <p className="text-gray-300 text-sm">Event start: {new Date(event.date).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}</p>
+            </div>
+            <div>
+              <p className="text-pink-500 text-xs tracking-widest uppercase mb-2">Price</p>
+              <p className="text-gray-300 text-sm">{event.price}</p>
+            </div>
+            <div>
+              <p className="text-pink-500 text-xs tracking-widest uppercase mb-2">Category</p>
+              <p className="text-gray-300 text-sm">{event.category}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </article>
   );

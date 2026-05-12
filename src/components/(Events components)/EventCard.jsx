@@ -1,17 +1,13 @@
 import Image from "next/image";
 import Button from "@/components/(globalComponents)/Btn";
 
-const EventCard = ({ id, title, date, scene, description, image, imageLeft = true }) => {
+const EventCard = ({ event, title, date, scene, description, image, imageLeft = true }) => {
   return (
-    <article className="flex flex-col lg:flex-row">
+    <article className="flex flex-col lg:flex-row lg:even:flex-row-reverse">
       {/* Billede */}
-      <div
-        className={`relative w-full lg:w-1/2 aspect-video lg:aspect-auto lg:min-h-[400px]
-        ${imageLeft ? "lg:order-1" : "lg:order-2"}`}
-      >
+      <div className="relative w-full lg:w-1/2 aspect-video lg:aspect-auto lg:min-h-[400px]">
         <Image src={image} alt={title} fill className="object-cover" />
       </div>
-
       {/* Tekst */}
       <div
         className={`w-full lg:w-1/2 p-6 lg:p-12 flex flex-col justify-center bg-black
@@ -24,7 +20,7 @@ const EventCard = ({ id, title, date, scene, description, image, imageLeft = tru
         <p className="text-gray-300 text-sm leading-relaxed mt-4 mb-8">{description}</p>
 
         <div className="w-fit">
-          <Button href={`/detailview/${id}`} label="READ MORE" />
+          <Button href={`/detailview/${event.slug}`} label="READ MORE" />
         </div>
       </div>
     </article>
