@@ -5,22 +5,22 @@ const NavListe = () => {
     <ul className="flex flex-col lg:flex-row items-center gap-8 lg:gap-10">
       <li>
         <Link href="/">
-          <div className="text-white text-sm tracking-widest hover:text-pink-500 transition-colors">HOME</div>
+          <div className="text-white text-sm tracking-widest hover:text-[oklch(65%_0.23_370)] transition-colors">HOME</div>
         </Link>
       </li>
       <li>
         <Link href="/Event">
-          <div className="text-pink-500 text-sm tracking-widest border-b border-pink-500 pb-0.5">EVENTS</div>
+          <div className="text-white text-sm tracking-widest border-b hover:text-[oklch(65%_0.23_370)] pb-0.5">EVENTS</div>
         </Link>
       </li>
       <li>
         <Link href="/BookTable">
-          <div className="text-white text-sm tracking-widest hover:text-pink-500 transition-colors">BOOK TABLE</div>
+          <div className="text-white text-sm tracking-widest hover:text-[oklch(65%_0.23_370)] transition-colors">BOOK TABLE</div>
         </Link>
       </li>
       <li>
         <Link href="/ContactUs">
-          <div className="text-white text-sm tracking-widest hover:text-pink-500 transition-colors">CONTACT US</div>
+          <div className="text-white text-sm tracking-widest hover:text-[oklch(65%_0.23_370)] transition-colors">CONTACT US</div>
         </Link>
       </li>
     </ul>

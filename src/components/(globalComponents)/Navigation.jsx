@@ -5,19 +5,21 @@ import PinkFrame from "./PinkFrame";
 
 const Navigation = () => {
   return (
-    <PinkFrame>
-      <nav>
-        <div className="container-base flex items-center justify-between py-4 relative z-10">
-          <SmallLogo />
-          <div className="lg:hidden">
-            <Burger />
+    <div className="fixed top-0 left-0 w-full">
+      <PinkFrame>
+        <nav className="px-10">
+          <div className="container-base flex items-center justify-between py-4 relative z-10">
+            <SmallLogo className="ml-10" />
+            <div className="lg:hidden">
+              <Burger />
+            </div>
+            <div className="hidden lg:flex">
+              <NavListe />
+            </div>
           </div>
-          <div className="hidden lg:flex">
-            <NavListe />
-          </div>
-        </div>
-      </nav>
-    </PinkFrame>
+        </nav>
+      </PinkFrame>
+    </div>
   );
 };
 
