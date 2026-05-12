@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+nav[popover] {
+  display: none;
+}
+
+nav[popover]:popover-open {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
 :root {
   --font-sm: clamp(0.875rem, 2vw, 1rem);
   --font-base: clamp(1rem, 2.5vw, 1.125rem);

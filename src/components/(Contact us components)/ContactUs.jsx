@@ -1,5 +1,66 @@
 const ContactUs = () => {
-  return <div></div>;
+  return (
+    <div
+      className="min-h-screen flex flex-col p-8 px-6 box-border"
+      style={{
+        background: "radial-gradient(ellipse at top, #1a0a0a 0%, #0a0a0a 60%)",
+        fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+      }}
+    >
+      <div className="flex flex-col gap-3 mb-6">
+        <input
+          className="
+            w-full bg-transparent border border-white/15 rounded-sm
+            text-white text-sm tracking-wider px-4 py-4 outline-none
+            transition-colors duration-200 placeholder-white/30
+            focus:border-[#e8003a]
+          "
+          type="text"
+          placeholder="Your Name"
+        />
+        <input
+          className="
+            w-full bg-transparent border border-white/15 rounded-sm
+            text-white text-sm tracking-wider px-4 py-4 outline-none
+            transition-colors duration-200 placeholder-white/30
+            focus:border-[#e8003a]
+          "
+          type="email"
+          placeholder="Your Email"
+        />
+        <textarea
+          className="
+            w-full bg-transparent border border-white/15 rounded-sm
+            text-white text-sm tracking-wider px-4 py-4 outline-none
+            transition-colors duration-200 placeholder-white/30
+            focus:border-[#e8003a] resize-y min-h-80
+          "
+          placeholder="Your Comment"
+        />
+      </div>
+
+      <div className="flex justify-end">
+        <button
+          className="
+            bg-transparent border-none text-white text-[0.82rem] font-bold
+            tracking-[0.14em] cursor-pointer px-0 py-[0.4rem]
+            relative transition-colors duration-200
+            hover:text-[#e8003a] group
+          "
+        >
+          SEND
+          {/* ::after underline via a sibling span */}
+          <span
+            className="
+              absolute bottom-0 left-0 right-0 h-px
+              bg-white/40 transition-colors duration-200
+              group-hover:bg-[#e8003a]
+            "
+          />
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default ContactUs;
