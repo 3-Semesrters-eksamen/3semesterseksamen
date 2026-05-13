@@ -19,9 +19,7 @@ const EventCard = ({ event, title, date, scene, description, image, imageLeft = 
         </p>
         <p className="text-gray-300 text-sm leading-relaxed mt-4 mb-8">{description}</p>
 
-        <div className="w-fit">
-          <Button href={`/detailview/${event.slug}`} label="READ MORE" />
-        </div>
+        <div className="w-fit">{/* <Button href={`/detailview/${event.slug}`} label="READ MORE" /> */}</div>
       </div>
     </article>
   );

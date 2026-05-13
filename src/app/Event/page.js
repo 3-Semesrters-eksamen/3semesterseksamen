@@ -2,6 +2,7 @@
 import EventsList from "@/components/(Events components)/EventsList";
 import Image from "next/image";
 import Navigation from "@/components/(globalComponents)/Navigation";
+import Footer from "@/components/(footer components)/Footer";
 import EventCard from "@/components/(Events components)/EventCard";
 
 export default async function EventsPage({ searchParams }) {
@@ -18,10 +19,11 @@ export default async function EventsPage({ searchParams }) {
       <Navigation />
       <section className="relative w-full h-48 lg:h-64 flex items-center justify-center">
         <Image src="/events/LandingBg.png" alt="Events" fill className="object-cover brightness-50" />
-        <h1 className="relative z-10 text-white text-3xl lg:text-4xl font-bold tracking-widest">EVENTS</h1>
+        <h1 className="relative z-9 text-white text-3xl lg:text-4xl font-bold tracking-widest">EVENTS</h1>
       </section>
 
       <EventsList events={events} currentPage={Number(page)} totalPages={totalPages} />
+      <Footer />
     </main>
   );
 }

@@ -5,10 +5,10 @@ import PinkFrame from "./PinkFrame";
 
 const Navigation = () => {
   return (
-    <div className="fixed top-0 left-0 w-full">
+    <div className="fixed top-0 left-0 w-full z-10 bg-black">
       <PinkFrame>
         <nav className="px-10">
-          <div className="container-base flex items-center justify-between py-4 relative z-10">
+          <div className="container-base flex items-center justify-between py-4 relative">
             <SmallLogo className="ml-10" />
             <div className="lg:hidden">
               <Burger />
