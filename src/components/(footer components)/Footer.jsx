@@ -1,5 +1,5 @@
 import FooterContainer from "./FooterContainer";
-import FooterInfo from "./FooterInfo";
+import FooterInfo from "./Footerinfo";
 import FooterNews from "./FooterNews";
 import SocialContainer from "./SocialContainer";
 
