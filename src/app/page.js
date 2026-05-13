@@ -8,25 +8,28 @@ import ClubGallery from "@/components/(ForsideComponents)/ClubGallery";
 import ClubTrack from "@/components/(ForsideComponents)/ClubTrack";
 import LatestVideo from "@/components/(ForsideComponents)/LatestVideo";
 import NewsSubsriberContainer from "@/components/(ForsideComponents)/NewsSubscribeContainer";
+import Footer from "@/components/(footer components)/Footer";
+import Hero from "@/components/(Hero components)/Hero";
 
 export default function Home() {
   return (
     <div>
+      <Hero />
       <div className="header">
         <HeaderContainer />
         <Navigation />
       </div>
 
-      <div className="main">
+      {/* <div className="main">
         <WelcomeClub />
         <FeaturedEventsContainer />
         <ClubGallery />
         <ClubTrack />
         <LatestVideo />
         <NewsSubsriberContainer />
-      </div>
+      </div> */}
       <div className="footer">
-        <footer />
+        <Footer />
       </div>
     </div>
   );
