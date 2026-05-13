@@ -1,63 +1,34 @@
-export default function FooterContainer({ children }) {
+import SocialConList from "./SocialConList";
+
+export default function FooterContainer({ colLeft, colMiddle, colRight }) {
   return (
-    <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&display=swap');
+    <footer className="relative w-full overflow-hidden bg-gradient-to-b from-[#0c0000] via-[#1a0005] to-[#0c0000] font-sans text-white">
+      <div className="pointer-events-none absolute bottom-20 left-1/2 h-72 w-4/5 -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(180,0,40,0.13)_0%,transparent_70%)]" />
 
-        .nc-footer {
-          background: linear-gradient(180deg, #0c0000 0%, #180000 50%, #0c0000 100%);
-          color: #fff;
-          font-family: 'Barlow', sans-serif;
-          text-align: center;
-          padding: 52px 28px 40px;
-          position: relative;
-          overflow: hidden;
-          width: 100%;
-          box-sizing: border-box;
-        }
+      {/* Top section */}
+      <div className="relative grid grid-cols-1 gap-12 px-8 pt-14 pb-10 text-center md:grid-cols-3 md:px-16 md:pt-16 md:pb-12 md:text-left">
+        <div>{colLeft}</div>
+        <div className="hidden md:block">{colMiddle}</div>
+        <div className="hidden md:block">{colRight}</div>
+      </div>
 
-        .nc-footer::before {
-          content: '';
-          position: absolute;
-          top: -60px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 260px;
-          height: 260px;
-          background: radial-gradient(circle, rgba(220,0,60,0.12) 0%, transparent 70%);
-          pointer-events: none;
-        }
+      {/* Bottom bar */}
+      <div className="relative border-t border-white/[0.07] px-8 py-6 md:px-16">
+        {/* Mobile */}
+        <div className="flex flex-col items-center gap-5 md:hidden">
+          <SocialConList />
+          <p className="text-xs font-semibold text-white/35">Night Club</p>
+          <p className="text-xs font-semibold text-white/35">All Rights Reserved</p>
+          <p className="text-xs font-semibold text-white/35">Copyright © NightClub</p>
+        </div>
 
-        .nc-divider {
-          width: 32px;
-          height: 1px;
-          background: rgba(232,0,77,0.55);
-          margin: 0 auto 36px;
-        }
-
-        .nc-section {
-          margin-bottom: 36px;
-        }
-
-        .nc-section-title {
-          font-size: 0.6rem;
-          letter-spacing: 0.35em;
-          color: #e8004d;
-          text-transform: uppercase;
-          font-weight: 700;
-          margin: 0 0 12px;
-        }
-
-        .nc-section-body {
-          font-size: 1rem;
-          font-weight: 600;
-          line-height: 1.9;
-          color: rgba(255,255,255,0.88);
-          margin: 0;
-        }
-      `}</style>
-
-      <footer className="nc-footer">{children}</footer>
-    </>
+        {/* Desktop */}
+        <div className="hidden md:grid md:grid-cols-3 md:items-center">
+          <p className="text-xs font-semibold text-white/35">Night Club · All Rights Reserved</p>
+          <SocialConList />
+          <p className="text-right text-xs font-semibold text-white/35">Copyright © NightClub</p>
+        </div>
+      </div>
+    </footer>
   );
 }

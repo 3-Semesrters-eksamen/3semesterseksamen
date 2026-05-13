@@ -1,16 +1,17 @@
+import FooterPost from "./FooterPost";
+
+const posts = [
+  { id: 1, image: null, text: "Lorem Ipsum is simply dummy text of the printing and typesetting.", date: "April 17, 2018" },
+  { id: 2, image: null, text: "Lorem Ipsum is simply dummy text of the printing and typesetting.", date: "April 17, 2018" },
+];
+
 export default function FooterNews() {
   return (
-    <p
-      style={{
-        fontSize: "0.65rem",
-        letterSpacing: "0.2em",
-        color: "rgba(255,255,255,0.45)",
-        textTransform: "uppercase",
-        fontWeight: 600,
-        margin: "0 0 18px",
-      }}
-    >
-      Stay Connected With Us
-    </p>
+    <div>
+      <p className="mb-6 text-[0.62rem] font-bold uppercase tracking-[0.3em] text-[#e8004d]">Recent Posts</p>
+      {posts.map((post) => (
+        <FooterPost key={post.id} image={post.image} text={post.text} date={post.date} />
+      ))}
+    </div>
   );
 }
