@@ -10,7 +10,13 @@ export default function SocialContainer() {
     <div>
       <p className="mb-6 text-[0.62rem] font-bold uppercase tracking-[0.3em] text-[#e8004d]">Recent Tweets</p>
       {tweets.map((tweet) => (
-        <FaTwitter key={tweet.id} text={tweet.text} time={tweet.time} />
+        <div key={tweet.id} className="flex gap-3 mb-4">
+          <FaTwitter className="mt-1 shrink-0 text-[#e8004d]" size={16} />
+          <div>
+            <p className="text-sm text-white">{tweet.text}</p>
+            <span className="text-xs text-white/45">{tweet.time}</span>
+          </div>
+        </div>
       ))}
     </div>
   );
