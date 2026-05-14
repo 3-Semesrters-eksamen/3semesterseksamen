@@ -5,7 +5,7 @@ const EventsList = ({ events, currentPage, totalPages }) => {
   return (
     <section className="bg-black">
       {events.map((event) => (
-        <EventCard key={event.id} id={event.id} title={event.title} date={event.date} location={event.location} excerpt={event.excerpt} image={`${process.env.NEXT_PUBLIC_API_URL}${event.asset.url}`} />
+        <EventCard key={event.id} id={event.id} slug={event.slug} title={event.title} date={event.date} location={event.location} excerpt={event.excerpt} image={`${process.env.NEXT_PUBLIC_API_URL}${event.asset.url}`} />
       ))}
 
       <div className="flex items-center justify-center gap-3 py-12 text-white text-sm tracking-widest">
