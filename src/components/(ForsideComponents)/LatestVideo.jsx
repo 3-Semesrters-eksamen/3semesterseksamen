@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import PinkFrame from "../(globalComponents)/PinkFrame";
 import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
+import H1 from "../(globalComponents)/H1";
 
 export default function LatestVideo() {
   const videos = [{ src: "/media/video-crowd.mp4" }, { src: "/media/video-2.mp4" }, { src: "/media/video-3.mp4" }];
@@ -35,6 +36,7 @@ export default function LatestVideo() {
 
   return (
     <div className="flex flex-col items-center mt-10">
+      <H1 className="text-white text-xl mb-6">LATEST VIDEO</H1>
       <PinkFrame className="w-full max-w-3xl aspect-[16/9]">
         <video ref={videoRef} className="w-full h-full object-cover shadow-lg" controls muted playsInline>
           <source src={videos[currentIndex].src} type="video/mp4" />
