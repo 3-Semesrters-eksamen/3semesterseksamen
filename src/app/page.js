@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import HeaderContainer from "../components/(ForsideComponents)/WelcomeClubContainer";
+
 import Navigation from "@/components/(globalComponents)/Navigation";
 import FeaturedEventsContainer from "@/components/(ForsideComponents)/FeaturedEventsContainer";
 import ClubGallery from "@/components/(ForsideComponents)/ClubGallery";
@@ -15,7 +15,6 @@ export default function Home() {
     <div className="bg-black">
       <Hero />
       <div className="header">
-        <HeaderContainer />
         <Navigation />
       </div>
       <div className="bg-black">
