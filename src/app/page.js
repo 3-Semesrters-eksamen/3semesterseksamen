@@ -12,21 +12,23 @@ import Hero from "@/components/(Hero components)/Hero";
 
 export default function Home() {
   return (
-    <div>
+    <div className="bg-black">
       <Hero />
       <div className="header">
         <HeaderContainer />
         <Navigation />
       </div>
-
-      {/* <div className="main">
-       
+      <div className="bg-black">
+        {/* <div className="main">
+        <WelcomeClub />
         <FeaturedEventsContainer />
         <ClubGallery />
         <ClubTrack />
-        <LatestVideo />
+        
         <NewsSubsriberContainer />
       </div> */}
+        <LatestVideo />
+      </div>
       <div className="footer">
         <Footer />
       </div>
