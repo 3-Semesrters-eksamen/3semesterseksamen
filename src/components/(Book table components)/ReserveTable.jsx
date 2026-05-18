@@ -3,9 +3,7 @@ const NIGHTS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturda
 
 export default function ReserveTable() {
   return (
-    <div className="border border-[#2a2a2a] rounded-[3px] p-[16px_14px] flex flex-col gap-3.5">
-      <h2 className="text-[11px] font-bold tracking-[0.22em] text-[#aaa] m-0 pb-2.5 border-b border-[#2a2a2a] font-mono">BOOK A TABLE</h2>
-
+    <div className=" md:max-w-xl border border-[#2a2a2a] rounded min-h-screen max-w-md mx-auto p-4 flex flex-col gap-3">
       <ReserveForm />
     </div>
   );
