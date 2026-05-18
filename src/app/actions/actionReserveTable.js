@@ -1,16 +1,13 @@
 "use server";
 const actionReserveTable = async (prevState, formData) => {
   await new Promise((resolve) => setTimeout(resolve, 1500));
-  const resname = formData.get("resname");
+  const response = formData.get("response");
 
   /*EFTER FETCH SKAL DER VÆRE NOGET? FOR DEN REGISTRERE IKKE NOGET SOM SUCESS*/
   try {
-    const res = await fetch({
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: { resname },
-      }),
+    const response = await fetch("http://localhost:4000/reservations", {
+      method: "GET",
+      headers: headersList,
     });
 
     if (!res.ok) {
@@ -18,7 +15,7 @@ const actionReserveTable = async (prevState, formData) => {
     }
 
     const data = await res.json();
-    if (!resname) {
+    if (!response) {
       return {
         success: false,
         message: "Mail missing",
