@@ -28,8 +28,8 @@ body {
 
 /* GLOBAL TYPOGRAFI – uden @layer */
 h1 {
-  font-size: var(--font-2xl);
-  font-weight: 700;
+  font-size: var(--font-xl);
+  font-weight: 500;
 }
 
 h2 {
