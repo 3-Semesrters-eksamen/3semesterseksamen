@@ -1,48 +1,144 @@
 "use client";
-import action from "@/app/actions/actionReserveTable";
+import actionReserveTable from "@/app/actions/actionReserveTable";
 import Form from "next/form";
-import { useActionState } from "react";
+import { useActionState, useEffect, useState } from "react";
+import { IoCheckmarkCircle } from "react-icons/io5";
 
-const NIGHTS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+const inputBase = "bg-transparent border-b border-[#444] text-white placeholder-[#666] text-[13px] font-mono px-0 py-3 outline-none w-full transition-colors focus:border-[#c9a84c]";
+const inputErr = "bg-transparent border-b border-red-600 text-white placeholder-[#666] text-[13px] font-mono px-0 py-3 outline-none w-full";
 
-const ReserveForm = () => {
-  const [state, resAction, isPending] = useActionState(action, {
-    message: "",
-  });
+export default function ReserveForm({ selectedTable, eventId, eventDate, onTableConflict }) {
+  const [state, formAction, isPending] = useActionState(actionReserveTable, null);
+  const [showModal, setShowModal] = useState(false);
+
+  // Show modal on success, fire conflict callback on table conflict
+  useEffect(() => {
+    if (state?.success) {
+      setShowModal(true);
+    }
+    if (state?.tableConflict) {
+      onTableConflict?.(state.tableConflict);
+    }
+  }, [state]);
+
+  const fieldErr = (field) => (state && !state.success && state.field === field ? state.message : null);
 
   return (
-    <div className="border border-[#2a2a2a] rounded-[3px] p-[16px_14px] flex flex-col gap-3.5">
-      {state && state.message && <div className={`mb-4 p-3 rounded-lg text-sm font-medium ${state.success ? "bg-green-100 text-green-800 border border-green-300" : "bg-red-100 text-red-800 border border-red-300"}`}>{state.message}</div>}
+    <>
+      {/* ── Success modal ── */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 px-4">
+          <div className="bg-[#111] border border-[#2a2a2a] rounded-lg p-10 max-w-sm w-full flex flex-col items-center text-center shadow-2xl">
+            <IoCheckmarkCircle className="text-[#c9a84c] text-6xl mb-5" />
+            <h3 className="text-white font-mono font-bold text-xl tracking-widest mb-3 uppercase">Reservation Confirmed</h3>
+            <p className="text-[#888] font-mono text-sm leading-relaxed mb-8">
+              Table {state?.reservedTable} has been reserved.
+              <br />
+              We look forward to seeing you!
+            </p>
+            <button onClick={() => setShowModal(false)} className="border border-[#555] text-[#ccc] font-mono text-[11px] tracking-[0.25em] px-8 py-3 uppercase hover:border-[#c9a84c] hover:text-[#c9a84c] transition-colors">
+              CLOSE
+            </button>
+          </div>
+        </div>
+      )}
 
-      <Form action={resAction} className="flex flex-col gap-2.5">
-        <input className="bg-[#1c1c1c] border border-[#333] rounded-xs text-[#ccc] text-[13px] font-mono px-3.5 py-3 outline-none w-full" type="text" name="name" placeholder="Your Name" />
-        <input className="bg-[#1c1c1c] border border-[#333] rounded-xs text-[#ccc] text-[13px] font-mono px-3.5 py-3 outline-none w-full" type="email" name="email" placeholder="Your Email" />
-        <input className="bg-[#1c1c1c] border border-[#333] rounded-xs text-[#ccc] text-[13px] font-mono px-3.5 py-3 outline-none w-full" type="text" name="tableNumber" placeholder="Table Number" />
-        <input className="bg-[#1c1c1c] border border-[#333] rounded-xs text-[#ccc] text-[13px] font-mono px-3.5 py-3 outline-none w-full" type="number" name="guests" placeholder="Number of Guests" />
+      {/* ── General/network error ── */}
+      {state && !state.success && !state.field && <div className="mb-5 px-4 py-3 border border-red-800 bg-red-900/20 rounded text-red-400 text-[12px] font-mono">✗ {state.message}</div>}
 
-        <select className="bg-[#1c1c1c] border border-[#333] rounded-xs text-[#ccc] text-[13px] font-mono px-3.5 py-3 outline-none w-full" name="night" defaultValue="">
-          <option value="" disabled>
-            Choose Night
-          </option>
-          {NIGHTS.map((n) => (
-            <option key={n} value={n.toLowerCase()}>
-              {n}
-            </option>
-          ))}
-        </select>
+      <Form action={formAction} className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6" noValidate>
+        {/* Hidden fields */}
+        {eventId && <input type="hidden" name="eventId" value={eventId} />}
+        {eventDate && <input type="hidden" name="date" value={eventDate} />}
 
-        <input className="bg-[#1c1c1c] border border-[#333] rounded-xs text-[#ccc] text-[13px] font-mono px-3.5 py-3 outline-none w-full" type="tel" name="contact" placeholder="Your Contact Number" />
+        {/* Name */}
+        <div className="flex flex-col gap-1">
+          <input name="name" type="text" placeholder="Your Name" className={fieldErr("name") ? inputErr : inputBase} />
+          {fieldErr("name") && (
+            <span className="text-red-400 text-[11px] font-mono" role="alert">
+              {fieldErr("name")}
+            </span>
+          )}
+        </div>
 
-        <textarea className="bg-[#1c1c1c] border border-[#333] rounded-xs text-[#ccc] text-[13px] font-mono px-3.5 py-3 outline-none w-full min-h-25 resize-y" name="comment" placeholder="Your Comment" />
+        {/* Email */}
+        <div className="flex flex-col gap-1">
+          <input name="email" type="email" placeholder="Your Email" className={fieldErr("email") ? inputErr : inputBase} />
+          {fieldErr("email") && (
+            <span className="text-red-400 text-[11px] font-mono" role="alert">
+              {fieldErr("email")}
+            </span>
+          )}
+        </div>
 
-        <div className="flex justify-end mt-1.5">
-          <button type="submit" className="bg-[#1c1c1c] border border-[#555] text-[#ccc] font-mono text-[12px] font-bold tracking-[0.2em] px-7 py-3 cursor-pointer rounded-xs">
+        {/* Table Number — pre-filled and locked when selected from map */}
+        <div className="flex flex-col gap-1">
+          <input name="tableNumber" type="number" placeholder="Table Number" value={selectedTable ?? undefined} readOnly={!!selectedTable} className={`${fieldErr("tableNumber") ? inputErr : inputBase} ${selectedTable ? "text-[#c9a84c] cursor-default" : ""}`} />
+          {fieldErr("tableNumber") && (
+            <span className="text-red-400 text-[11px] font-mono" role="alert">
+              {fieldErr("tableNumber")}
+            </span>
+          )}
+        </div>
+
+        {/* Number of guests */}
+        <div className="flex flex-col gap-1">
+          <input name="guests" type="number" placeholder="Number of Guests" min={1} max={20} className={fieldErr("guests") ? inputErr : inputBase} />
+          {fieldErr("guests") && (
+            <span className="text-red-400 text-[11px] font-mono" role="alert">
+              {fieldErr("guests")}
+            </span>
+          )}
+        </div>
+
+        {/* Date — hidden if eventDate is pre-filled, shown as read-only label if it is */}
+        {!eventDate ? (
+          <div className="flex flex-col gap-1">
+            <input name="date" type="date" min={new Date().toISOString().split("T")[0]} className={fieldErr("date") ? inputErr : inputBase} style={{ colorScheme: "dark" }} />
+            {fieldErr("date") && (
+              <span className="text-red-400 text-[11px] font-mono" role="alert">
+                {fieldErr("date")}
+              </span>
+            )}
+          </div>
+        ) : (
+          <div className="flex flex-col gap-1">
+            <input
+              type="text"
+              readOnly
+              value={new Date(eventDate).toLocaleDateString("en-GB", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+              className={`${inputBase} text-[#c9a84c] cursor-default`}
+            />
+          </div>
+        )}
+
+        {/* Phone */}
+        <div className="flex flex-col gap-1">
+          <input name="contact" type="tel" placeholder="Your Contact Number" className={fieldErr("contact") ? inputErr : inputBase} />
+          {fieldErr("contact") && (
+            <span className="text-red-400 text-[11px] font-mono" role="alert">
+              {fieldErr("contact")}
+            </span>
+          )}
+        </div>
+
+        {/* Comment — full width */}
+        <div className="flex flex-col gap-1 col-span-1 md:col-span-2">
+          <textarea name="comments" rows={6} placeholder="Your Comment" className={`${inputBase} resize-y`} />
+        </div>
+
+        {/* Submit */}
+        <div className="col-span-1 md:col-span-2 flex justify-end mt-2">
+          <button type="submit" disabled={isPending} className="border border-[#555] text-[#ccc] font-mono text-[12px] font-bold tracking-[0.25em] px-8 py-3 uppercase hover:border-[#c9a84c] hover:text-[#c9a84c] transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
             {isPending ? "RESERVING..." : "RESERVE"}
           </button>
         </div>
       </Form>
-    </div>
+    </>
   );
-};
-
-export default ReserveForm;
+}
