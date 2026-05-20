@@ -2,7 +2,7 @@
 import EventsList from "@/components/(Events components)/EventsList";
 import Image from "next/image";
 import Navigation from "@/components/(globalComponents)/Navigation";
-import Footer from "@/components/(footer components)/Footer";
+import Footer from "@/components/(footerComponents)/Footer";
 import EventCard from "@/components/(Events components)/EventCard";
 
 export default async function EventsPage({ searchParams }) {

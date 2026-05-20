@@ -1,6 +1,6 @@
-import Hero from "@/components/(Hero components)/Hero";
+import Hero from "@/components/(ForsideComponents)/Hero";
 import Navigation from "@/components/(globalComponents)/Navigation";
-import Footer from "@/components/(footer components)/Footer";
+import Footer from "@/components/(footerComponents)/Footer";
 import WelcomeClub from "@/components/(ForsideComponents)/WelcomeClubContainer";
 import ReviewContainer from "@/components/(ForsideComponents)/ReviewContainer";
 import NewsSubsriberContainer from "@/components/(ForsideComponents)/NewsSubscribeContainer";

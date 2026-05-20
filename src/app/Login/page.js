@@ -1,6 +1,6 @@
 import LoginContainer from "@/components/(Login components)/LoginContainer";
 import Btn from "@/components/(globalComponents)/Btn";
-import Footer from "@/components/(footer components)/Footer";
+import Footer from "@/components/(footerComponents)/Footer";
 import Image from "next/image";
 import Navigation from "@/components/(globalComponents)/Navigation";
 

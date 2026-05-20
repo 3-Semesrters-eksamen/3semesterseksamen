@@ -5,7 +5,7 @@ import PinkFrame from "./PinkFrame";
 
 const Navigation = () => {
   return (
-    <div className="fixed top-0 left-0 w-full z-10 bg-black sticky top-0">
+    <div className="top-0 left-0 w-full z-10 bg-black sticky">
       <PinkFrame>
         <nav className="px-10">
           <div className="container-base flex items-center justify-between py-4 relative">
