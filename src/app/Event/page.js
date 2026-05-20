@@ -16,7 +16,7 @@ export default async function EventsPage({ searchParams }) {
   const totalPages = Math.ceil(totalCount / 3);
 
   return (
-    <main className="bg-black min-h-screen">
+    <main style={{ backgroundImage: "url('/backgrounds/pattern_bg.jpg')" }} className="py-12">
       <Navigation />
       <LilleHero className="text-3xl md:text-5xl">EVENTS</LilleHero>
       <EventsList events={events} currentPage={Number(page)} totalPages={totalPages} />
