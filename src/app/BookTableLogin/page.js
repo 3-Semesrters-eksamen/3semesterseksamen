@@ -1,12 +1,16 @@
-import Image from "next/image";
-import Navigation from "@/components/(globalComponents)/Navigation";
+import BookTableContainer from "@/components/(Book table components)/BookTableContainer";
 import Footer from "@/components/(footer components)/Footer";
+import Navigation from "@/components/(globalComponents)/Navigation";
 
-export default function BookTableLogin() {
+export const metadata = {
+  title: "Book Table — Night Club",
+};
+
+export default async function BookTablePage({ searchParams }) {
   return (
     <>
       <Navigation />
-
+      <BookTableContainer searchParams={searchParams} />
       <Footer />
     </>
   );
