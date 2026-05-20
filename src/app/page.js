@@ -3,7 +3,6 @@ import Image from "next/image";
 import Hero from "@/components/(ForsideComponents)/Hero";
 import Navigation from "@/components/(globalComponents)/Navigation";
 import WelcomeClub from "@/components/(ForsideComponents)/WelcomeClubContainer";
-import EventSlider from "@/components/(ForsideComponents)/EventSlider";
 import ClubGallery from "@/components/(ForsideComponents)/ClubGallery";
 import ClubTrack from "@/components/(ForsideComponents)/ClubTrack";
 import LatestVideo from "@/components/(ForsideComponents)/LatestVideo";
@@ -22,7 +21,7 @@ export default async function Home() {
     const featuredEvents = await eventsres.json();
 
     return (
-      <div className="bg-black">
+      <div className="flex flex-col" style={{ backgroundImage: "url('/backgrounds/pattern_bg.jpg')" }}>
         <Hero />
         <Navigation />
         <WelcomeClub />
