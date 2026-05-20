@@ -1,11 +1,7 @@
 import ReserveTable from "./ReserveTable";
 import LilleHero from "@/components/(globalComponents)/LilleHero";
 
-export default function BookTableContainer() {
-  return (
-    <div className=" bg-[#111]">
-      <div>
-        <LilleHero className="text-3xl md:text-5xl">BOOK A TABLE</LilleHero>
+// 1. Hjælpefunktioner defineres uden for komponenten
 async function getEvent(eventId) {
   try {
     const res = await fetch(`https://mmd-b7-reservations.netlify.app/events/${eventId}`, { cache: "no-store" });
@@ -26,7 +22,8 @@ async function getOccupiedTables(date) {
     return [];
   }
 }
-//CHECK OP PÅ HVORDAN DET DER EVENT SKAL FUNGERE//
+
+// 2. Den samlede export default funktion
 export default async function BookTableContainer({ searchParams }) {
   const params = await searchParams;
   const eventId = params?.eventId ? parseInt(params.eventId) : null;
@@ -44,11 +41,17 @@ export default async function BookTableContainer({ searchParams }) {
 
   return (
     <div className="bg-[#111] min-h-screen">
-      <div className="flex items-center justify-center pt-10 pb-2">
-        <H1 className="text-white text-xl mb-6">BOOK TABLE</H1>
+      {/* Her har jeg indsat din LilleHero fra den øverste del af din kode */}
+      <div className="pt-10">
+        <LilleHero className="text-3xl md:text-5xl">BOOK A TABLE</LilleHero>
       </div>
 
-      {/* ReserveTable is a client component — holds state for selected table */}
+      <div className="flex items-center justify-center pt-10 pb-2">
+        {/* Vær opmærksom på om 'H1' er importeret korrekt, ellers brug <h1> */}
+        <h1 className="text-white text-xl mb-6">RESERVATION</h1>
+      </div>
+
+      {/* ReserveTable får data som props */}
       <ReserveTable event={event} initialOccupied={initialOccupied} />
     </div>
   );
