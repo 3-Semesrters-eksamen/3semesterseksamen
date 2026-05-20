@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Button({ href, label, onClick, className = "" }) {
   const inner = (
-    <span className="group inline-flex flex-col items-center justify-center gap-2.5 px-12 cursor-pointer">
+    <span className="group inline-flex flex-col items-center justify-center gap-2.5 cursor-pointer">
       {" "}
       {/* Top line */}
       <span className="flex w-full h-px overflow-hidden">
