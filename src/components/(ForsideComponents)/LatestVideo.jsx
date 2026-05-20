@@ -35,7 +35,7 @@ export default function LatestVideo() {
   }, [currentIndex]);
 
   return (
-    <div className="flex flex-col items-center mt-10">
+    <div className="flex flex-col items-center mt-10 z-9">
       <H1 className="text-white text-xl mb-6">LATEST VIDEO</H1>
       <PinkFrame className="w-full max-w-3xl aspect-[16/9]">
         <video ref={videoRef} className="w-full h-full object-cover shadow-lg" controls muted playsInline>
