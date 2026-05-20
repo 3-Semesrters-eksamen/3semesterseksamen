@@ -1,6 +1,11 @@
 import ReserveTable from "./ReserveTable";
-import H1 from "@/components/(globalComponents)/H1";
+import LilleHero from "@/components/(globalComponents)/LilleHero";
 
+export default function BookTableContainer() {
+  return (
+    <div className=" bg-[#111]">
+      <div>
+        <LilleHero className="text-3xl md:text-5xl">BOOK A TABLE</LilleHero>
 async function getEvent(eventId) {
   try {
     const res = await fetch(`https://mmd-b7-reservations.netlify.app/events/${eventId}`, { cache: "no-store" });
