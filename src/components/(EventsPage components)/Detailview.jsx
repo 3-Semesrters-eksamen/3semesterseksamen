@@ -11,7 +11,7 @@ const Detailview = async ({ slug }) => {
   if (!event) return <p className="text-white">Event ikke fundet</p>;
 
   return (
-    <article className="bg-black text-white">
+    <article className="text-white" style={{ backgroundImage: "url('/backgrounds/pattern_bg.jpg')" }}>
       <div className="relative w-full h-64 lg:h-[500px]">
         <Image src={`${process.env.NEXT_PUBLIC_API_URL}${event.heroAsset.url}`} alt={event.heroAsset.alt} fill className="object-cover brightness-75" />
       </div>

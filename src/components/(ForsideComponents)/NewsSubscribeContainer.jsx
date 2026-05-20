@@ -1,12 +1,7 @@
 const NewsSubsriberContainer = () => {
   return (
     <main>
-      <div
-        className="flex items-center justify-center p-8 px-4"
-        style={{
-          background: "radial-gradient(ellipse at top, #1a0a0a 0%, #0a0a0a 60%)",
-        }}
-      >
+      <div className="flex items-center justify-center p-8 px-4 bg-black">
         <div className="w-full max-w-[420px]">
           <p className="text-[0.78rem] font-bold tracking-[0.12em] text-white text-center mb-[0.6rem]">WANT THE LATES NIGHT CLUB NEWS</p>
 
