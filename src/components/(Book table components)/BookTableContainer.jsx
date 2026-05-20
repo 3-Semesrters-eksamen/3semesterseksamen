@@ -1,14 +1,12 @@
 import PickTable from "./PickTable";
 import ReserveTable from "./ReserveTable";
-import H1 from "@/components/(globalComponents)/H1";
+import LilleHero from "@/components/(globalComponents)/LilleHero";
 
 export default function BookTableContainer() {
   return (
     <div className=" bg-[#111]">
       <div>
-        <div className="flex items-center justify-center">
-          <H1 className="text-white text-xl mb-6">BOOK TABLE</H1>
-        </div>
+        <LilleHero className="text-3xl md:text-5xl">BOOK A TABLE</LilleHero>
 
         <PickTable />
         <ReserveTable />
