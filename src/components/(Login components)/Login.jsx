@@ -5,11 +5,11 @@ export default function Login() {
     <div
       className="min-h-screen flex items-center justify-center p-8 px-4"
       style={{
-        background: "radial-gradient(ellipse at top, #1a0a0a 0%, #0a0a0a 60%)",
+        background: "w-full bg-[#0d0d0d] px-6 sm:px-10 lg:px-20 py-10",
         fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
       }}
     >
-      <div className="w-full max-w-[340px] border border-white/[0.07] rounded-[4px] px-8 py-10" style={{ background: "rgba(15, 5, 5, 0.85)" }}>
+      <div className="w-full max-w-[340px] borderw-full bg-[#0d0d0d]  rounded-[4px] px-8 py-10">
         <p className="text-[0.78rem] font-bold tracking-[0.12em] text-white text-center mb-[0.6rem]">
           NIGHT<span className="text-[#e8003a]">CLUB</span> IS MEMBERS ONLY
         </p>
