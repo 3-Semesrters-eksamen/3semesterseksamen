@@ -2,7 +2,7 @@ import SocialConList from "./SocialConList";
 
 export default function FooterContainer({ colLeft, colMiddle, colRight }) {
   return (
-    <footer className="relative w-full overflow-hidden bg-gradient-to-b from-[#0c0000] via-[#1a0005] to-[#0c0000] font-sans text-white">
+    <footer>
       <div className="pointer-events-none absolute bottom-20 left-1/2 h-72 w-4/5 -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(180,0,40,0.13)_0%,transparent_70%)]" />
 
       {/* Top section */}
