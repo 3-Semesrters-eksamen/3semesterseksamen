@@ -19,7 +19,7 @@ const RegisterForm = () => {
 
         <div className="flex justify-end">
           <button className="bg-transparent border-none text-white text-[0.82rem] font-bold tracking-[0.14em] cursor-pointer px-0 py-[0.4rem] relative transition-colors duration-200 hover:text-[#e8003a] group">
-            SEND
+            REGISTER
             <span className="absolute bottom-0 left-0 right-0 h-px bg-white/40 transition-colors duration-200 group-hover:bg-[#e8003a]" />
           </button>
         </div>
