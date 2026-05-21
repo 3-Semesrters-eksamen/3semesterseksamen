@@ -1,7 +1,7 @@
-import FooterContainer from "./FooterContainer";
-import FooterInfo from "./FooterInfo";
-import FooterPost from "./FooterPost";
-import SocialContainer from "./SocialContainer";
+import FooterContainer from "@/components/(footer components)/FooterContainer.jsx";
+import FooterInfo from "@/components/(footer components)/FooterInfo.jsx";
+import FooterPost from "@/components/(footer components)/FooterPost.jsx";
+import SocialContainer from "@/components/(footer components)/FooterPost.jsx";
 
 export default function Footer() {
   return (

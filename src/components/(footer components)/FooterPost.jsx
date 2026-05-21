@@ -1,5 +1,5 @@
 import Image from "next/image";
-import FooterPostCards from "./FooterPostCards";
+import FooterPostCards from "@/components/(footer components)/FooterPostCards.jsx";
 
 const FooterPost = () => {
   return (

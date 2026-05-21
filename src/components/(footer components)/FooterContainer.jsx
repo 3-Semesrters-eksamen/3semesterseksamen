@@ -1,4 +1,4 @@
-import SocialConList from "./SocialConList";
+import SocialConList from "@/components/(footer components)/SocialConList.jsx";
 
 export default function FooterContainer({ colLeft, colMiddle, colRight }) {
   return (

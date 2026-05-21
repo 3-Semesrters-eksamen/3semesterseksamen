@@ -2,10 +2,10 @@ import Image from "next/image";
 import Button from "@/components/(globalComponents)/Btn";
 
 const Detailview = async ({ slug }) => {
-  const eventRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/${slug}`);
+  const eventRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/${slug}`, { cache: "no-store" });
   const event = await eventRes.json();
 
-  const commentsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comments?eventId=${event.id}`);
+  const commentsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comments?eventId=${event.id}`, { cache: "no-store" });
   const comments = await commentsRes.json();
 
   if (!event) return <p className="text-white">Event ikke fundet</p>;
