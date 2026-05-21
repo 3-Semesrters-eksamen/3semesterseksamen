@@ -46,11 +46,6 @@ export default async function BookTableContainer({ searchParams }) {
         <LilleHero className="text-3xl md:text-5xl">BOOK A TABLE</LilleHero>
       </div>
 
-      <div className="flex items-center justify-center pt-10 pb-2">
-        {/* Vær opmærksom på om 'H1' er importeret korrekt, ellers brug <h1> */}
-        <h1 className="text-white text-xl mb-6">RESERVATION</h1>
-      </div>
-
       {/* ReserveTable får data som props */}
       <ReserveTable event={event} initialOccupied={initialOccupied} />
     </div>
