@@ -13,8 +13,8 @@ export default function SocialContainer() {
         <div key={tweet.id} className="flex gap-3 mb-4">
           <FaTwitter className="mt-1 shrink-0 text-[#e8004d]" size={16} />
           <div>
-            <p className="text-sm text-white">{tweet.text}</p>
-            <span className="text-xs text-white/45">{tweet.time}</span>
+            <p className="text-white text-sm font-semibold leading-snug">{tweet.text}</p>
+            <span className="text-pink-500 text-xs">{tweet.time}</span>
           </div>
         </div>
       ))}
