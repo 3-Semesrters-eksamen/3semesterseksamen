@@ -46,6 +46,7 @@ const actionReserveTable = async (prevState, formData) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
+      cache: "no-store",
     });
 
     if (res.status === 409) {

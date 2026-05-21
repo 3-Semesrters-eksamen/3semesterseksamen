@@ -11,6 +11,7 @@ const actionContactUs = async (prevState, formData) => {
       body: JSON.stringify({
         name: { resname },
       }),
+      cache: "no-store",
     });
 
     if (!res.ok) {

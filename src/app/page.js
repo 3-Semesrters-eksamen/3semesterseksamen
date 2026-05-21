@@ -14,10 +14,14 @@ import FeaturedEvents from "@/components/(ForsideComponents)/FeaturedEventsConta
 
 export default async function Home() {
   {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/testimonials`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/testimonials`, {
+      cache: "no-store",
+    });
     const testimonials = await res.json();
 
-    const eventsres = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events?isFeatured=true`);
+    const eventsres = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events?isFeatured=true`, {
+      cache: "no-store",
+    });
     const featuredEvents = await eventsres.json();
 
     return (
