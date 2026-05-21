@@ -10,6 +10,11 @@ const nextConfig = {
         port: "4000",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "nightclub-api-7yf5.onrender.com",
+        pathname: "/**",
+      },
     ],
   },
 };
