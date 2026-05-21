@@ -8,7 +8,7 @@ import ClubTrack from "@/components/(ForsideComponents)/ClubTrack";
 import LatestVideo from "@/components/(ForsideComponents)/LatestVideo";
 import ReviewContainer from "@/components/(ForsideComponents)/ReviewContainer";
 import NewsSubsriberContainer from "@/components/(ForsideComponents)/NewsSubscribeContainer";
-import Footer from "@/components/(footer components)/Footer";
+import Footer from "@/components/(footerComponents)/Footer";
 
 import FeaturedEvents from "@/components/(ForsideComponents)/FeaturedEventsContainer";
 

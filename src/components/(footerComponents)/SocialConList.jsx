@@ -1,4 +1,4 @@
-import FooterButton from "@/components/(footer components)/FooterButton.jsx";
+import FooterButton from "@/components/(footerComponents)/FooterButton.jsx";
 import { FaSnapchatGhost, FaInstagram, FaTwitter, FaFacebook } from "react-icons/fa";
 
 export default function SocialConList() {

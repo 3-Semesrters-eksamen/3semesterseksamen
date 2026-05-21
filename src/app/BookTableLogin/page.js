@@ -1,5 +1,5 @@
 import BookTableContainer from "@/components/(Book table components)/BookTableContainer";
-import Footer from "@/components/(footer components)/Footer";
+import Footer from "@/components/(footerComponents)/Footer";
 import Navigation from "@/components/(globalComponents)/Navigation";
 
 export const metadata = {
