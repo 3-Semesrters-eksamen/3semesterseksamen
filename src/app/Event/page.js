@@ -1,27 +1,33 @@
-// app/events/page.jsx
 import EventsList from "@/components/(Events components)/EventsList";
-import Image from "next/image";
 import Navigation from "@/components/(globalComponents)/Navigation";
 import Footer from "@/components/(footerComponents)/Footer";
-import EventCard from "@/components/(Events components)/EventCard";
 import LilleHero from "@/components/(globalComponents)/LilleHero";
 
 export default async function EventsPage({ searchParams }) {
-  const params = await searchParams;
-  const page = params?.page || 1;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events?_page=${page}&_limit=3`, {
-    cache: "no-store",
-  });
-  const events = await res.json();
+  const page = Number(searchParams?.page) || 1;
 
-  const totalCount = res.headers.get("X-Total-Count");
-  const totalPages = Math.ceil(totalCount / 3);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events?page=${page}&limit=3`, { cache: "no-store" });
+
+  let data = await res.json().catch(() => null);
+
+  if (!data || !Array.isArray(data.events)) {
+    return (
+      <main className="py-12">
+        <Navigation />
+        <LilleHero>EVENTS</LilleHero>
+        <p className="text-white text-center mt-10">No events found.</p>
+        <Footer />
+      </main>
+    );
+  }
 
   return (
     <main style={{ backgroundImage: "url('/backgrounds/pattern_bg.jpg')" }} className="py-12">
       <Navigation />
       <LilleHero className="text-3xl md:text-5xl">EVENTS</LilleHero>
-      <EventsList events={events} currentPage={Number(page)} totalPages={totalPages} />
+
+      <EventsList events={data.events} currentPage={page} totalPages={data.totalPages} />
+
       <Footer />
     </main>
   );
