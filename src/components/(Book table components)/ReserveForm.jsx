@@ -11,7 +11,6 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
   const [state, formAction, isPending] = useActionState(actionReserveTable, null);
   const [showModal, setShowModal] = useState(false);
 
-  // Show modal on success, fire conflict callback on table conflict
   useEffect(() => {
     if (state?.success) {
       setShowModal(true);
@@ -20,8 +19,14 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
       onTableConflict?.(state.tableConflict);
     }
   }, [state]);
-
-  const fieldErr = (field) => (state && !state.success && state.field === field ? state.message : null);
+  {
+    /* viser om bordet er optaget eller ej. hvis bordet er TableConflict, er det optaget og så kommer der en besked frem om at det er optaget.
+  // hvis det ikke er optaget er det Success og så kommer der en besked frem om at det er reserveret. */
+  }
+  const errors = (field) => (state && !state.success && state.field === field ? state.message : null);
+  {
+    /*her er for hvis der opstår problemer med netværket eller hvis der er andre fejl, så kommer der en besked frem om at der er en fejl.*/
+  }
 
   return (
     <>
@@ -43,7 +48,6 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
         </div>
       )}
 
-      {/* ── General/network error ── */}
       {state && !state.success && !state.field && <div className="mb-5 px-4 py-3 border border-red-800 bg-red-900/20 rounded text-red-400 text-[12px] font-mono">✗ {state.message}</div>}
 
       <Form action={formAction} className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6" noValidate>
@@ -53,40 +57,40 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
 
         {/* Name */}
         <div className="flex flex-col gap-1">
-          <input name="name" type="text" placeholder="Your Name" className={fieldErr("name") ? inputErr : inputBase} />
-          {fieldErr("name") && (
+          <input name="name" type="text" placeholder="Your Name" className={errors("name") ? inputErr : inputBase} />
+          {errors("name") && (
             <span className="text-red-400 text-[11px] font-mono" role="alert">
-              {fieldErr("name")}
+              {errors("name")}
             </span>
           )}
         </div>
 
         {/* Email */}
         <div className="flex flex-col gap-1">
-          <input name="email" type="email" placeholder="Your Email" className={fieldErr("email") ? inputErr : inputBase} />
-          {fieldErr("email") && (
+          <input name="email" type="email" placeholder="Your Email" className={errors("email") ? inputErr : inputBase} />
+          {errors("email") && (
             <span className="text-red-400 text-[11px] font-mono" role="alert">
-              {fieldErr("email")}
+              {errors("email")}
             </span>
           )}
         </div>
 
         {/* Table Number — pre-filled and locked when selected from map */}
         <div className="flex flex-col gap-1">
-          <input name="tableNumber" type="number" placeholder="Table Number" value={selectedTable ?? undefined} readOnly={!!selectedTable} className={`${fieldErr("tableNumber") ? inputErr : inputBase} ${selectedTable ? "text-[#c9a84c] cursor-default" : ""}`} />
-          {fieldErr("tableNumber") && (
+          <input name="tableNumber" type="number" placeholder="Table Number" value={selectedTable ?? undefined} readOnly={!!selectedTable} className={`${errors("tableNumber") ? inputErr : inputBase} ${selectedTable ? "text-[#c9a84c] cursor-default" : ""}`} />
+          {errors("tableNumber") && (
             <span className="text-red-400 text-[11px] font-mono" role="alert">
-              {fieldErr("tableNumber")}
+              {errors("tableNumber")}
             </span>
           )}
         </div>
 
         {/* Number of guests */}
         <div className="flex flex-col gap-1">
-          <input name="guests" type="number" placeholder="Number of Guests" min={1} max={20} className={fieldErr("guests") ? inputErr : inputBase} />
-          {fieldErr("guests") && (
+          <input name="guests" type="number" placeholder="Number of Guests" min={1} max={20} className={errors("guests") ? inputErr : inputBase} />
+          {errors("guests") && (
             <span className="text-red-400 text-[11px] font-mono" role="alert">
-              {fieldErr("guests")}
+              {errors("guests")}
             </span>
           )}
         </div>
@@ -94,10 +98,10 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
         {/* Date — hidden if eventDate is pre-filled, shown as read-only label if it is */}
         {!eventDate ? (
           <div className="flex flex-col gap-1">
-            <input name="date" type="date" min={new Date().toISOString().split("T")[0]} className={fieldErr("date") ? inputErr : inputBase} style={{ colorScheme: "dark" }} />
-            {fieldErr("date") && (
+            <input name="date" type="date" min={new Date().toISOString().split("T")[0]} className={errors("date") ? inputErr : inputBase} style={{ colorScheme: "dark" }} />
+            {errors("date") && (
               <span className="text-red-400 text-[11px] font-mono" role="alert">
-                {fieldErr("date")}
+                {errors("date")}
               </span>
             )}
           </div>
@@ -119,10 +123,10 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
 
         {/* Phone */}
         <div className="flex flex-col gap-1">
-          <input name="contact" type="tel" placeholder="Your Contact Number" className={fieldErr("contact") ? inputErr : inputBase} />
-          {fieldErr("contact") && (
+          <input name="contact" type="tel" placeholder="Your Contact Number" className={errors("contact") ? inputErr : inputBase} />
+          {errors("contact") && (
             <span className="text-red-400 text-[11px] font-mono" role="alert">
-              {fieldErr("contact")}
+              {errors("contact")}
             </span>
           )}
         </div>
