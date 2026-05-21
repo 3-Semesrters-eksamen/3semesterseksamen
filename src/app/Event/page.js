@@ -9,7 +9,9 @@ import LilleHero from "@/components/(globalComponents)/LilleHero";
 export default async function EventsPage({ searchParams }) {
   const params = await searchParams;
   const page = params?.page || 1;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events?_page=${page}&_limit=3`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events?_page=${page}&_limit=3`, {
+    cache: "no-store",
+  });
   const events = await res.json();
 
   const totalCount = res.headers.get("X-Total-Count");

@@ -2,7 +2,7 @@ import H1 from "@/components/(globalComponents)/H1";
 export default async function ClubGallery() {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
-  const res = await fetch(`${baseUrl}/gallery`);
+  const res = await fetch(`${baseUrl}/gallery`, { cache: "no-store" });
   const gallery = await res.json();
 
   return (
