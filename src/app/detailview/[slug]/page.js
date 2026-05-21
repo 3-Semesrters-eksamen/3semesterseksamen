@@ -1,7 +1,7 @@
-import Detailview from "@/components/(EventsPage components)/Detailview";
+import Detailview from "@/components/(EventsPageComponents)/Detailview";
 import { Suspense } from "react";
 import Navigation from "@/components/(globalComponents)/Navigation";
-import CommentContainer from "@/components/(EventsPage components)/CommentContainer";
+import CommentContainer from "@/components/(EventsPageComponents)/CommentContainer";
 
 export default async function EventDetailPage({ params }) {
   const { slug } = await params;
