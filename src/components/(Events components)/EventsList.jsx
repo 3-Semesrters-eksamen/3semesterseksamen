@@ -2,26 +2,44 @@ import EventCard from "./EventCard";
 import Link from "next/link";
 
 const EventsList = ({ events, currentPage, totalPages }) => {
+  // Sikring: hvis events ikke er et array → lav det til et tomt array
+  const safeEvents = Array.isArray(events) ? events : [];
+
   return (
     <section className="bg-black">
-      {events.map((event) => (
-        <EventCard key={event.id} id={event.id} slug={event.slug} title={event.title} date={event.date} location={event.location} excerpt={event.excerpt} image={`${process.env.NEXT_PUBLIC_API_URL}${event.asset.url}`} />
+      {/* Sikret map – crasher ikke længere */}
+      {safeEvents.map((event) => (
+        <EventCard
+          key={event.id}
+          id={event.id}
+          slug={event.slug}
+          title={event.title}
+          date={event.date}
+          location={event.location}
+          excerpt={event.excerpt}
+          image={
+            event.asset?.url ? `${process.env.NEXT_PUBLIC_API_URL}${event.asset.url}` : "/fallback.jpg" // valgfri fallback
+          }
+        />
       ))}
 
       <div style={{ backgroundImage: "url('/backgrounds/pattern_bg.jpg')" }} className="py-12">
         <div className="flex items-center justify-center gap-3 py-12 text-white text-sm tracking-widest">
+          {/* Tilbage-knap */}
           {currentPage === totalPages && (
             <Link href={`/Event?page=${currentPage - 1}`} className="hover:text-pink-500">
               &lt; tilbage
             </Link>
           )}
 
+          {/* Side-tal */}
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
             <Link key={pageNum} href={`/Event?page=${pageNum}`} className={`hover:text-pink-500 ${currentPage === pageNum ? "text-pink-500" : ""}`}>
               {pageNum}
             </Link>
           ))}
 
+          {/* Næste-knap */}
           {currentPage < totalPages && (
             <Link href={`/Event?page=${currentPage + 1}`} className="hover:text-pink-500">
               næste &gt;
