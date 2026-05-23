@@ -4,7 +4,7 @@ import Hero from "@/components/(ForsideComponents)/Hero";
 import Navigation from "@/components/(globalComponents)/Navigation";
 import WelcomeClub from "@/components/(ForsideComponents)/WelcomeClubContainer";
 import ClubGallery from "@/components/(ForsideComponents)/ClubGallery";
-import ClubTrack from "@/components/(ForsideComponents)/ClubTrack";
+import Audio from "@/components/(ForsideComponents)/Audio";
 import LatestVideo from "@/components/(ForsideComponents)/LatestVideo";
 import ReviewContainer from "@/components/(ForsideComponents)/ReviewContainer";
 import NewsSubsriberContainer from "@/components/(ForsideComponents)/NewsSubscribeContainer";
@@ -31,6 +31,7 @@ export default async function Home() {
         <WelcomeClub />
         <FeaturedEvents events={featuredEvents} />
         <ClubGallery />
+        <Audio />
         <LatestVideo />
         <ReviewContainer testimonials={testimonials} />
         <NewsSubsriberContainer />

@@ -1,0 +1,43 @@
+/* Baggrund */
+.rhap_container {
+  background: #000 !important;
+  color: #fff !important;
+  border-radius: 8px;
+}
+
+/* Progress bar (den pink linje) */
+.rhap_progress-bar {
+  background: #444 !important;
+}
+
+.rhap_progress-filled {
+  background: #ff2bb3 !important; /* Pink */
+}
+
+.rhap_progress-indicator {
+  background: #ff2bb3 !important; /* Pink knob */
+  box-shadow: 0 0 5px #ff2bb3;
+}
+
+/* Volume bar */
+.rhap_volume-bar {
+  background: #444 !important;
+}
+
+.rhap_volume-filled {
+  background: #ff2bb3 !important;
+}
+
+.rhap_volume-indicator {
+  background: #ff2bb3 !important;
+  box-shadow: 0 0 5px #ff2bb3;
+}
+
+/* Knapper */
+.rhap_button-clear {
+  color: #fff !important;
+}
+
+.rhap_button-clear:hover {
+  color: #ff2bb3 !important;
+}
