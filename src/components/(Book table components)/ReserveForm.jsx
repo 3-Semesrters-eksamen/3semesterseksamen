@@ -12,25 +12,14 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    if (state?.success) {
-      setShowModal(true);
-    }
-    if (state?.tableConflict) {
-      onTableConflict?.(state.tableConflict);
-    }
+    if (state?.success) setShowModal(true);
+    if (state?.tableConflict) onTableConflict?.(state.tableConflict);
   }, [state]);
-  {
-    /* viser om bordet er optaget eller ej. hvis bordet er TableConflict, er det optaget og så kommer der en besked frem om at det er optaget.
-  // hvis det ikke er optaget er det Success og så kommer der en besked frem om at det er reserveret. */
-  }
+
   const errors = (field) => (state && !state.success && state.field === field ? state.message : null);
-  {
-    /*her er for hvis der opstår problemer med netværket eller hvis der er andre fejl, så kommer der en besked frem om at der er en fejl.*/
-  }
 
   return (
     <>
-      {/* ── Success modal ── */}
       {showModal && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 px-4">
           <div className="bg-[#111] border border-[#2a2a2a] rounded-lg p-10 max-w-sm w-full flex flex-col items-center text-center shadow-2xl">
@@ -51,9 +40,8 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
       {state && !state.success && !state.field && <div className="mb-5 px-4 py-3 border border-red-800 bg-red-900/20 rounded text-red-400 text-[12px] font-mono">✗ {state.message}</div>}
 
       <Form action={formAction} className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6" noValidate>
-        {/* Hidden fields */}
         {eventId && <input type="hidden" name="eventId" value={eventId} />}
-        {eventDate && <input type="hidden" name="date" value={eventDate} />}
+        {eventDate && <input type="hidden" name="date" value={new Date(eventDate).toISOString().split("T")[0]} />}
 
         {/* Name */}
         <div className="flex flex-col gap-1">
@@ -75,17 +63,17 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
           )}
         </div>
 
-        {/* Table Number — pre-filled and locked when selected from map */}
+        {/* Table — was "tableNumber", now "table" */}
         <div className="flex flex-col gap-1">
-          <input name="tableNumber" type="number" placeholder="Table Number" value={selectedTable ?? undefined} readOnly={!!selectedTable} className={`${errors("tableNumber") ? inputErr : inputBase} ${selectedTable ? "text-[#c9a84c] cursor-default" : ""}`} />
-          {errors("tableNumber") && (
+          <input name="table" type="number" placeholder="Table Number" value={selectedTable ?? undefined} readOnly={!!selectedTable} onChange={() => {}} className={`${errors("table") ? inputErr : inputBase} ${selectedTable ? "text-[#c9a84c] cursor-default" : ""}`} />
+          {errors("table") && (
             <span className="text-red-400 text-[11px] font-mono" role="alert">
-              {errors("tableNumber")}
+              {errors("table")}
             </span>
           )}
         </div>
 
-        {/* Number of guests */}
+        {/* Guests */}
         <div className="flex flex-col gap-1">
           <input name="guests" type="number" placeholder="Number of Guests" min={1} max={20} className={errors("guests") ? inputErr : inputBase} />
           {errors("guests") && (
@@ -95,7 +83,7 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
           )}
         </div>
 
-        {/* Date — hidden if eventDate is pre-filled, shown as read-only label if it is */}
+        {/* Date — free input if no event, locked gold display if event */}
         {!eventDate ? (
           <div className="flex flex-col gap-1">
             <input name="date" type="date" min={new Date().toISOString().split("T")[0]} className={errors("date") ? inputErr : inputBase} style={{ colorScheme: "dark" }} />
@@ -121,17 +109,17 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
           </div>
         )}
 
-        {/* Phone */}
+        {/* Phone — was "contact", now "phone" */}
         <div className="flex flex-col gap-1">
-          <input name="contact" type="tel" placeholder="Your Contact Number" className={errors("contact") ? inputErr : inputBase} />
-          {errors("contact") && (
+          <input name="phone" type="tel" placeholder="Your Phone Number" className={errors("phone") ? inputErr : inputBase} />
+          {errors("phone") && (
             <span className="text-red-400 text-[11px] font-mono" role="alert">
-              {errors("contact")}
+              {errors("phone")}
             </span>
           )}
         </div>
 
-        {/* Comment — full width */}
+        {/* Comment */}
         <div className="flex flex-col gap-1 col-span-1 md:col-span-2">
           <textarea name="comments" rows={6} placeholder="Your Comment" className={`${inputBase} resize-y`} />
         </div>
