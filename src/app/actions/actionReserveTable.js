@@ -3,13 +3,12 @@
 const actionReserveTable = async (prevState, formData) => {
   const name = formData.get("name");
   const email = formData.get("email");
-  const tableNumber = formData.get("tableNumber");
+  const table = formData.get("table"); // was "tableNumber"
   const guests = formData.get("guests");
   const date = formData.get("date");
-  const contact = formData.get("contact");
+  const phone = formData.get("phone"); // was "contact"
   const eventId = formData.get("eventId");
 
-  // Validering
   if (!name || name.trim().length < 2) {
     return { success: false, field: "name", message: "Name must be at least 2 characters" };
   }
@@ -17,8 +16,8 @@ const actionReserveTable = async (prevState, formData) => {
   if (!email || !emailRegex.test(email)) {
     return { success: false, field: "email", message: "Invalid email address" };
   }
-  if (!tableNumber) {
-    return { success: false, field: "tableNumber", message: "Please select a table from the overview" };
+  if (!table) {
+    return { success: false, field: "table", message: "Please select a table from the overview" };
   }
   if (!guests || parseInt(guests) < 1 || parseInt(guests) > 20) {
     return { success: false, field: "guests", message: "Number of guests must be between 1 and 20" };
@@ -26,19 +25,19 @@ const actionReserveTable = async (prevState, formData) => {
   if (!date) {
     return { success: false, field: "date", message: "Date is required" };
   }
-  const phoneClean = contact?.replace(/\s/g, "");
+  const phoneClean = phone?.replace(/\s/g, "");
   if (!phoneClean || phoneClean.length < 8) {
-    return { success: false, field: "contact", message: "Phone number must be at least 8 digits" };
+    return { success: false, field: "phone", message: "Phone number must be at least 8 digits" };
   }
 
   try {
     const body = {
       name: name.trim(),
       email: email.trim(),
-      table: tableNumber,
+      table,
       guests,
       date,
-      phone: contact.trim(),
+      phone: phone.trim(),
       ...(eventId && { eventId: parseInt(eventId) }),
     };
 
@@ -52,9 +51,9 @@ const actionReserveTable = async (prevState, formData) => {
     if (res.status === 409) {
       return {
         success: false,
-        field: "tableNumber",
-        message: `Table ${tableNumber} is already reserved on this date. Please choose another table.`,
-        tableConflict: parseInt(tableNumber),
+        field: "table",
+        message: `Table ${table} is already reserved on this date. Please choose another table.`,
+        tableConflict: parseInt(table),
       };
     }
 
@@ -68,8 +67,8 @@ const actionReserveTable = async (prevState, formData) => {
 
     return {
       success: true,
-      message: `Table ${tableNumber} reserved for ${name.trim()}! We look forward to seeing you.`,
-      reservedTable: parseInt(tableNumber),
+      message: `Table ${table} reserved for ${name.trim()}! We look forward to seeing you.`,
+      reservedTable: parseInt(table),
     };
   } catch (error) {
     return { success: false, message: "Something went wrong. Check your connection and try again." };
