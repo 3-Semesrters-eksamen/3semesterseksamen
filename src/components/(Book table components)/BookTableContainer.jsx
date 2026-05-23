@@ -1,10 +1,11 @@
 import ReserveTable from "./ReserveTable";
 import LilleHero from "@/components/(globalComponents)/LilleHero";
 
-// 1. Hjælpefunktioner defineres uden for komponenten
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 async function getEvent(eventId) {
   try {
-    const res = await fetch(`https://mmd-b7-reservations.netlify.app/events/${eventId}`, { cache: "no-store" });
+    const res = await fetch(`${API_URL}/events/${eventId}`, { cache: "no-store" });
     if (!res.ok) return null;
     return await res.json();
   } catch {
@@ -14,7 +15,7 @@ async function getEvent(eventId) {
 
 async function getOccupiedTables(date) {
   try {
-    const res = await fetch(`https://mmd-b7-reservations.netlify.app/reservations?date=${date}`, { cache: "no-store" });
+    const res = await fetch(`${API_URL}/reservations?date=${date}`, { cache: "no-store" });
     if (!res.ok) return [];
     const data = await res.json();
     return Array.isArray(data) ? data.map((r) => parseInt(r.table)) : [];
@@ -23,7 +24,6 @@ async function getOccupiedTables(date) {
   }
 }
 
-// 2. Den samlede export default funktion
 export default async function BookTableContainer({ searchParams }) {
   const params = await searchParams;
   const eventId = params?.eventId ? parseInt(params.eventId) : null;
@@ -41,12 +41,9 @@ export default async function BookTableContainer({ searchParams }) {
 
   return (
     <div className="bg-[#111] min-h-screen">
-      {/* Her har jeg indsat din LilleHero fra den øverste del af din kode */}
       <div className="pt-10">
         <LilleHero className="text-3xl md:text-5xl">BOOK A TABLE</LilleHero>
       </div>
-
-      {/* ReserveTable får data som props */}
       <ReserveTable event={event} initialOccupied={initialOccupied} />
     </div>
   );
