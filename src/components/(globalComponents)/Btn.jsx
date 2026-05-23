@@ -1,41 +1,58 @@
 "use client";
 
 import Link from "next/link";
+import { motion, useAnimation } from "framer-motion";
+
+const DURATION = 0.5;
+const EASE = [0.76, 0, 0.24, 1];
 
 export default function Button({ href, label, onClick, className = "" }) {
+  const controls = useAnimation();
+
+  const handleHoverStart = () => {
+    controls.start("hover");
+  };
+
+  const handleHoverEnd = () => {
+    controls.start("rest");
+  };
+
+  const textVariants = {
+    rest: { color: "#ffffff", transition: { duration: DURATION, ease: EASE } },
+    hover: { color: "#ff2d78", transition: { duration: DURATION, ease: EASE } },
+  };
+
+  // Top line: slides in from the left (origin-left)
+  const lineLeftVariants = {
+    rest: { scaleX: 0, transition: { duration: DURATION, ease: EASE } },
+    hover: { scaleX: 1, transition: { duration: DURATION, ease: EASE } },
+  };
+
+  // Bottom line: slides in from the right (origin-right)
+  const lineRightVariants = {
+    rest: { scaleX: 0, transition: { duration: DURATION, ease: EASE } },
+    hover: { scaleX: 1, transition: { duration: DURATION, ease: EASE } },
+  };
+
   const inner = (
-    <span className="group inline-flex flex-col items-center justify-center gap-2.5 cursor-pointer">
-      {" "}
-      {/* Top line */}
-      <span className="flex w-full h-px overflow-hidden">
-        <span className="flex-1 bg-white transition-colors duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:bg-[#ff2d78]" />
-        <span className="flex-1 bg-white transition-colors duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:bg-[#ff2d78]" />
+    <motion.span className="group inline-flex flex-col items-center justify-center gap-2.5 cursor-pointer" animate={controls} initial="rest" onHoverStart={handleHoverStart} onHoverEnd={handleHoverEnd}>
+      {/* Top line — slides in from the left */}
+      <span className="relative flex w-full h-px bg-white overflow-hidden">
+        <motion.span className="absolute inset-0 bg-[#ff2d78] origin-left" variants={lineLeftVariants} />
       </span>
+
       {/* Text */}
       <span className="relative py-1">
-        {/* Base — white */}
-        <span className="block font-montserrat text-[11px] font-bold tracking-[0.22em] uppercase text-white whitespace-nowrap select-none">{label}</span>
-
-        {/* Pink clone — revealed from both sides via clip-path */}
-        {/* <span
-          aria-hidden
-          className="
-            absolute inset-0
-            block font-montserrat text-[11px] font-bold tracking-[0.22em] uppercase text-[#ff2d78] whitespace-nowrap select-none
-            [clip-path:inset(0_50%_0_50%)]
-            transition-[clip-path] duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]
-            group-hover:[clip-path:inset(0_0%_0_0%)]
-          "
-        >
+        <motion.span className="block font-montserrat text-[11px] font-bold tracking-[0.22em] uppercase whitespace-nowrap select-none" variants={textVariants}>
           {label}
-        </span> */}
+        </motion.span>
       </span>
-      {/* Bottom line */}
-      <span className="flex w-full h-px overflow-hidden">
-        <span className="flex-1 bg-white transition-colors duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:bg-[#ff2d78]" />
-        <span className="flex-1 bg-white transition-colors duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:bg-[#ff2d78]" />
+
+      {/* Bottom line — slides in from the right */}
+      <span className="relative flex w-full h-px bg-white overflow-hidden">
+        <motion.span className="absolute inset-0 bg-[#ff2d78] origin-right" variants={lineRightVariants} />
       </span>
-    </span>
+    </motion.span>
   );
 
   if (href) {
