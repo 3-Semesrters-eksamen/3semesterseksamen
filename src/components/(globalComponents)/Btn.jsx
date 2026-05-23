@@ -6,7 +6,7 @@ import { motion, useAnimation } from "framer-motion";
 const DURATION = 0.5;
 const EASE = [0.76, 0, 0.24, 1];
 
-export default function Button({ href, label, onClick, className = "" }) {
+export default function Button({ href, label, onClick, className = "", type = "button", disabled = false, children, ...props }) {
   const controls = useAnimation();
 
   const handleHoverStart = () => {
@@ -44,7 +44,7 @@ export default function Button({ href, label, onClick, className = "" }) {
       {/* Text */}
       <span className="relative py-1">
         <motion.span className="block font-montserrat text-[11px] font-bold tracking-[0.22em] uppercase whitespace-nowrap select-none" variants={textVariants}>
-          {label}
+          {label ?? children}
         </motion.span>
       </span>
 
@@ -64,7 +64,7 @@ export default function Button({ href, label, onClick, className = "" }) {
   }
 
   return (
-    <button type="button" onClick={onClick} className={`inline-block bg-transparent border-none outline-none ${className}`}>
+    <button type={type} disabled={disabled} onClick={onClick} className={`inline-block bg-transparent border-none outline-none ${className}`} {...props}>
       {inner}
     </button>
   );

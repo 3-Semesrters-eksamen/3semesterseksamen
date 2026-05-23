@@ -3,6 +3,7 @@ import actionReserveTable from "@/app/actions/actionReserveTable";
 import Form from "next/form";
 import { useActionState, useEffect, useState } from "react";
 import { IoCheckmarkCircle } from "react-icons/io5";
+import Btn from "@/components/(globalComponents)/Btn";
 
 const inputBase = "bg-transparent border-b border-[#444] text-white placeholder-[#666] text-[13px] font-mono px-0 py-3 outline-none w-full transition-colors focus:border-[#c9a84c]";
 const inputErr = "bg-transparent border-b border-red-600 text-white placeholder-[#666] text-[13px] font-mono px-0 py-3 outline-none w-full";
@@ -126,9 +127,9 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
 
         {/* Submit */}
         <div className="col-span-1 md:col-span-2 flex justify-end mt-2">
-          <button type="submit" disabled={isPending} className="border border-[#555] text-[#ccc] font-mono text-[12px] font-bold tracking-[0.25em] px-8 py-3 uppercase hover:border-[#c9a84c] hover:text-[#c9a84c] transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
+          <Btn type="submit" disabled={isPending}>
             {isPending ? "RESERVING..." : "RESERVE"}
-          </button>
+          </Btn>
         </div>
       </Form>
     </>
