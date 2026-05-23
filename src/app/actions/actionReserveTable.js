@@ -9,7 +9,7 @@ const actionReserveTable = async (prevState, formData) => {
   const contact = formData.get("contact");
   const eventId = formData.get("eventId");
 
-  // Validation
+  // Validering
   if (!name || name.trim().length < 2) {
     return { success: false, field: "name", message: "Name must be at least 2 characters" };
   }
@@ -42,7 +42,7 @@ const actionReserveTable = async (prevState, formData) => {
       ...(eventId && { eventId: parseInt(eventId) }),
     };
 
-    const res = await fetch("https://mmd-b7-reservations.netlify.app/reservations", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reservations`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
