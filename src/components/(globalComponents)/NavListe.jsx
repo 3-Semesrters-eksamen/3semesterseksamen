@@ -1,27 +1,19 @@
-import Link from "next/link";
+import RollingLink from "@/components/(Animations)/navigationAnimation";
 
 const NavListe = () => {
   return (
     <ul className="flex flex-col lg:flex-row items-center gap-8 lg:gap-10">
       <li>
-        <Link href="/">
-          <div className="text-white text-sm tracking-widest hover:text-[oklch(65%_0.23_370)] transition-colors">HOME</div>
-        </Link>
+        <RollingLink href="/" label="HOME" />
       </li>
       <li>
-        <Link href="/Event">
-          <div className="text-white text-sm tracking-widest hover:text-[oklch(65%_0.23_370)] pb-0.5">EVENTS</div>
-        </Link>
+        <RollingLink href="/Event" label="EVENTS" />
       </li>
       <li>
-        <Link href="/BookTable">
-          <div className="text-white text-sm tracking-widest hover:text-[oklch(65%_0.23_370)] transition-colors">BOOK TABLE</div>
-        </Link>
+        <RollingLink href="/BookTable" label="BOOK TABLE" />
       </li>
       <li>
-        <Link href="/ContactUs">
-          <div className="text-white text-sm tracking-widest hover:text-[oklch(65%_0.23_370)] transition-colors">CONTACT US</div>
-        </Link>
+        <RollingLink href="/ContactUs" label="CONTACT US" />
       </li>
     </ul>
   );
