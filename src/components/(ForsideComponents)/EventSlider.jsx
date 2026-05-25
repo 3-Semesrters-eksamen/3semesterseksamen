@@ -7,13 +7,12 @@ export default function EventSlider({ events = [] }) {
   const [current, setCurrent] = useState(0);
   const [itemsToShow, setItemsToShow] = useState(1);
 
-  // Find ud af hvor mange items der skal vises (1 mobil, 2 desktop)
   useEffect(() => {
     const update = () => {
       setItemsToShow(window.innerWidth > 768 ? 2 : 1);
     };
 
-    update(); // kør ved load
+    update();
     window.addEventListener("resize", update);
 
     return () => window.removeEventListener("resize", update);
