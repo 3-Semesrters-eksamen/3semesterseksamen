@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import PinkFrame from "../(globalComponents)/PinkFrame";
-import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
+import NavPinkFrame from "../(globalComponents)/NavPinkFrame";
+import { BiSolidLeftArrow, BiSolidRightArrow, BiPlay, BiPause } from "react-icons/bi";
 import H1 from "../(globalComponents)/H1";
 
 export default function LatestVideo() {
@@ -34,21 +34,45 @@ export default function LatestVideo() {
     return () => observer.disconnect();
   }, [currentIndex]);
 
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const togglePlay = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isPlaying) {
+      video.pause();
+      setIsPlaying(false);
+    } else {
+      video.play();
+      setIsPlaying(true);
+    }
+  };
+
   return (
-    <div className="flex flex-col items-center mt-10 z-9">
+    <div className="flex flex-col items-center mt-10">
       <H1 className="text-white text-xl mb-6">LATEST VIDEO</H1>
-      <PinkFrame className="w-full max-w-3xl aspect-[16/9]">
+
+      {/* Video med pink border */}
+      <div className="relative w-full max-w-3xl aspect-[16/9] border-t-2 border-b-2 border-[oklch(65%_0.23_370)]">
+        {/* Venstre trekant */}
+        <div className="absolute left-0 top-0 h-full w-16 bg-[oklch(65%_0.23_370)] z-10" style={{ clipPath: "polygon(0 0, 100% -43px, -34px 100%)" }} />
+        {/* Højre trekant */}
+        <div className="absolute right-0 top-0 h-full w-16 bg-[oklch(65%_0.23_370)] z-10" style={{ clipPath: "polygon(100% 43px, 100% 100%, 34px 100%)" }} />
+
         <video ref={videoRef} className="w-full h-full object-cover shadow-lg" controls muted playsInline>
           <source src={videos[currentIndex].src} type="video/mp4" />
         </video>
-      </PinkFrame>
+      </div>
 
       <div className="flex gap-4 mt-6">
-        <button onClick={prevVideo} className="px-2 py-2 bg-black border border-white border-1 text-white rounded hover:bg-gray-700 transition">
+        <button onClick={prevVideo} className="px-2 py-2 bg-black border border-white text-white rounded hover:bg-gray-700 transition">
           <BiSolidLeftArrow />
         </button>
-
-        <button onClick={nextVideo} className="px-2 py-2 bg-black border border-white border-1 text-white rounded hover:bg-gray-700 transition">
+        <button onClick={togglePlay} className="px-2 py-2 bg-black border border-white text-white rounded hover:bg-gray-700 transition">
+          {isPlaying ? <BiPause /> : <BiPlay />}
+        </button>
+        <button onClick={nextVideo} className="px-2 py-2 bg-black border border-white text-white rounded hover:bg-gray-700 transition">
           <BiSolidRightArrow />
         </button>
       </div>
