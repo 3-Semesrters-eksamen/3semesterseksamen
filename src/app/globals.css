@@ -16,6 +16,15 @@ nav[popover]:popover-open {
   height: 100vh;
 }
 
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 :root {
   --font-sm: clamp(0.875rem, 2vw, 1rem);
   --font-base: clamp(1rem, 2.5vw, 1.125rem);
