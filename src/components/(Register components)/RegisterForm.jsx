@@ -2,6 +2,7 @@
 import action from "@/app/actions/actionRegister";
 import Form from "next/form";
 import { useActionState } from "react";
+import Btn from "@/components/(globalComponents)/Btn";
 
 const RegisterForm = () => {
   const [state, resAction, isPending] = useActionState(action, {
