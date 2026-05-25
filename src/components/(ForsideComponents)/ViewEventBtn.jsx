@@ -1,0 +1,73 @@
+"use client";
+
+import Link from "next/link";
+import { motion, useAnimation } from "framer-motion";
+
+const DURATION = 0.5;
+const EASE = [0.76, 0, 0.24, 1];
+
+export default function ViewEventsButton({ href = "/events", className = "" }) {
+  const controls = useAnimation();
+
+  const handleHoverStart = () => controls.start("hover");
+  const handleHoverEnd = () => controls.start("rest");
+
+  const textVariants = {
+    rest: { color: "#9a9a9a", transition: { duration: DURATION, ease: EASE } },
+    hover: { color: "#ff2d78", transition: { duration: DURATION, ease: EASE } },
+  };
+
+  const lineTopVariants = {
+    rest: { scaleX: 0, transition: { duration: DURATION, ease: EASE } },
+    hover: { scaleX: 1, transition: { duration: DURATION, ease: EASE } },
+  };
+
+  const lineBottomVariants = {
+    rest: { scaleX: 0, transition: { duration: DURATION, ease: EASE } },
+    hover: { scaleX: 1, transition: { duration: DURATION, ease: EASE } },
+  };
+
+  const lineLeftVariants = {
+    rest: { scaleY: 0, transition: { duration: DURATION, ease: EASE } },
+    hover: { scaleY: 1, transition: { duration: DURATION, ease: EASE } },
+  };
+
+  const lineRightVariants = {
+    rest: { scaleY: 0, transition: { duration: DURATION, ease: EASE } },
+    hover: { scaleY: 1, transition: { duration: DURATION, ease: EASE } },
+  };
+
+  return (
+    <Link href={href} className={`inline-block ${className}`}>
+      <motion.span className="relative inline-flex items-center justify-center cursor-pointer px-8 py-4" animate={controls} initial="rest" onHoverStart={handleHoverStart} onHoverEnd={handleHoverEnd}>
+        {/* Metal sølv ramme */}
+        <span className="absolute inset-0" style={{ border: "1px solid", borderColor: "#9a9a9a", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.2)" }} />
+
+        {/* Top — slider fra venstre */}
+        <span className="absolute top-0 left-0 w-full h-px overflow-hidden">
+          <motion.span className="absolute inset-0 bg-[#ff2d78] origin-left" variants={lineTopVariants} />
+        </span>
+
+        {/* Bund — slider fra højre */}
+        <span className="absolute bottom-0 left-0 w-full h-px overflow-hidden">
+          <motion.span className="absolute inset-0 bg-[#ff2d78] origin-right" variants={lineBottomVariants} />
+        </span>
+
+        {/* Venstre — slider fra top */}
+        <span className="absolute top-0 left-0 h-full w-px overflow-hidden">
+          <motion.span className="absolute inset-0 bg-[#ff2d78] origin-top" variants={lineLeftVariants} />
+        </span>
+
+        {/* Højre — slider fra bund */}
+        <span className="absolute top-0 right-0 h-full w-px overflow-hidden">
+          <motion.span className="absolute inset-0 bg-[#ff2d78] origin-bottom" variants={lineRightVariants} />
+        </span>
+
+        {/* Tekst */}
+        <motion.span className="relative font-montserrat text-[11px] font-bold tracking-[0.22em] uppercase whitespace-nowrap select-none" variants={textVariants}>
+          View Events
+        </motion.span>
+      </motion.span>
+    </Link>
+  );
+}
