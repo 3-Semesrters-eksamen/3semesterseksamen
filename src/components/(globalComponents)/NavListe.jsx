@@ -1,22 +1,14 @@
-import RollingLink from "@/components/(Animations)/navigationAnimation";
+import RollingNav from "@/components/(Animations)/navigationAnimation";
+
+const links = [
+  { href: "/", label: "HOME" },
+  { href: "/Event", label: "EVENTS" },
+  { href: "/BookTable", label: "BOOK TABLE" },
+  { href: "/ContactUs", label: "CONTACT US" },
+];
 
 const NavListe = () => {
-  return (
-    <ul className="flex flex-col lg:flex-row items-center gap-8 lg:gap-10">
-      <li>
-        <RollingLink href="/" label="HOME" />
-      </li>
-      <li>
-        <RollingLink href="/Event" label="EVENTS" />
-      </li>
-      <li>
-        <RollingLink href="/BookTable" label="BOOK TABLE" />
-      </li>
-      <li>
-        <RollingLink href="/ContactUs" label="CONTACT US" />
-      </li>
-    </ul>
-  );
+  return <RollingNav links={links} />;
 };
 
 export default NavListe;
