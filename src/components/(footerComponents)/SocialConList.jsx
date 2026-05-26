@@ -4,7 +4,7 @@ import { FaSnapchatGhost, FaInstagram, FaTwitter, FaFacebook } from "react-icons
 export default function SocialConList() {
   return (
     <div className="flex flex-col items-center gap-3">
-      <p className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white/45">Stay Connected With Us</p>
+      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white">Stay Connected With Us</p>
       <div className="flex gap-3">
         <FooterButton href="#" ariaLabel="Facebook">
           <FaFacebook size={18} />
