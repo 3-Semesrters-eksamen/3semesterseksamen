@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { FaFacebook, FaTwitter } from "react-icons/fa";
+import { FaTwitter, FaFacebook } from "react-icons/fa";
 
 const ReviewContainer = ({ testimonials }) => {
   // Sikring
@@ -21,23 +21,34 @@ const ReviewContainer = ({ testimonials }) => {
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute inset-0 bg-black/80" />
+      <div className="absolute inset-0 bg-black/90" />
 
       <div className="relative z-9 flex flex-col items-center w-full">
-        <div className="relative w-24 h-24 rounded-full overflow-hidden mb-4">{testimonial.asset?.url && <Image src={`${process.env.NEXT_PUBLIC_API_URL}${testimonial.asset.url}`} alt={testimonial.asset?.alt || "testimonial"} fill className="object-cover" />}</div>
+        <div className="relative w-32 h-32 overflow-hidden mb-4">{testimonial.asset?.url && <Image src={`${process.env.NEXT_PUBLIC_API_URL}${testimonial.asset.url}`} alt={testimonial.asset?.alt || "testimonial"} fill className="object-cover" />}</div>
 
-        <p className="text-white font-bold tracking-widest text-sm mb-4">{testimonial.name || "Unknown"}</p>
+        <p className="text-white font-extrabold tracking-widest text-sm mb-4 uppercase">{testimonial.name || "Unknown"}</p>
 
-        <p className="text-gray-300 text-sm leading-relaxed max-w-2xl mb-6">{testimonial.content || "No testimonial available."}</p>
+        <p className="text-gray-300 font-regular text-xs leading-relaxed max-w-2xl mb-6">{testimonial.content || "No testimonial available."}</p>
 
         <div className="flex gap-4 mb-8">
           {testimonial.facebook && (
-            <a href={testimonial.facebook} target="_blank" className="text-gray-400 hover:text-pink-500">
+            <a
+              href={testimonial.facebook}
+              target="_blank"
+              className="text-gray-400 border border-white p-2 flex items-center justify-center 
+                 hover:text-pink-500 hover:border-pink-500 transition-colors duration-200"
+            >
               <FaFacebook size={18} />
             </a>
           )}
+
           {testimonial.twitter && (
-            <a href={testimonial.twitter} target="_blank" className="text-gray-400 hover:text-pink-500">
+            <a
+              href={testimonial.twitter}
+              target="_blank"
+              className="text-gray-400 border border-white p-2 flex items-center justify-center 
+                 hover:text-pink-500 hover:border-pink-500 transition-colors duration-200"
+            >
               <FaTwitter size={18} />
             </a>
           )}
@@ -45,7 +56,7 @@ const ReviewContainer = ({ testimonials }) => {
 
         <div className="flex gap-2">
           {safeTestimonials.map((_, index) => (
-            <button key={index} onClick={() => setCurrent(index)} className={`w-3 h-3 transition-colors duration-300 ${current === index ? "bg-pink-500" : "bg-gray-600 hover:bg-gray-400"}`} />
+            <button key={index} onClick={() => setCurrent(index)} className={`w-3 h-3 transition-colors duration-300 ${current === index ? "bg-pink-500" : "bg-white hover:bg-gray-400"}`} />
           ))}
         </div>
       </div>
