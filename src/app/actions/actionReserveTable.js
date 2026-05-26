@@ -3,11 +3,11 @@
 const actionReserveTable = async (prevState, formData) => {
   const name = formData.get("name");
   const email = formData.get("email");
-  const table = formData.get("table"); // was "tableNumber"
+  const table = formData.get("table");
   const guests = formData.get("guests");
-  const date = formData.get("date");
-  const phone = formData.get("phone"); // was "contact"
+  const phone = formData.get("phone");
   const eventId = formData.get("eventId");
+  const date = formData.get("date");
 
   if (!name || name.trim().length < 2) {
     return { success: false, field: "name", message: "Name must be at least 2 characters" };
@@ -22,12 +22,12 @@ const actionReserveTable = async (prevState, formData) => {
   if (!guests || parseInt(guests) < 1 || parseInt(guests) > 20) {
     return { success: false, field: "guests", message: "Number of guests must be between 1 and 20" };
   }
-  if (!date) {
-    return { success: false, field: "date", message: "Date is required" };
-  }
   const phoneClean = phone?.replace(/\s/g, "");
   if (!phoneClean || phoneClean.length < 8) {
     return { success: false, field: "phone", message: "Phone number must be at least 8 digits" };
+  }
+  if (!eventId && !date) {
+    return { success: false, field: "date", message: "Please select a date" };
   }
 
   try {
@@ -36,9 +36,9 @@ const actionReserveTable = async (prevState, formData) => {
       email: email.trim(),
       table,
       guests,
-      date,
       phone: phone.trim(),
       ...(eventId && { eventId: parseInt(eventId) }),
+      ...(date && { date: `${date}T20:00:00+02:00` }),
     };
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reservations`, {
@@ -52,7 +52,7 @@ const actionReserveTable = async (prevState, formData) => {
       return {
         success: false,
         field: "table",
-        message: `Table ${table} is already reserved on this date. Please choose another table.`,
+        message: `Table ${table} is already reserved. Please choose another table.`,
         tableConflict: parseInt(table),
       };
     }
