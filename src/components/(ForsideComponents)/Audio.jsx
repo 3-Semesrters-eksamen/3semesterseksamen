@@ -2,6 +2,7 @@
 import { useState } from "react";
 import MusikSpiller from "./MusikSpiller";
 import MusikListe from "./MusikListe";
+import H2 from "@/components/(globalComponents)/H2";
 
 const tracks = [
   { title: "Sang 1", src: "/media/black-box-funky.mp3", image: "/contentImg/track1.jpg" },
@@ -13,20 +14,17 @@ export default function Audio() {
   const [currentTrack, setCurrentTrack] = useState(tracks[0]);
 
   return (
-    <div className="flex flex-col items-center w-full">
-      {/* Musikspiller øverst */}
+    <div className="flex flex-col items-center w-full bg-black">
+      <H2>NIGHT CLUB TRACK</H2>
       <div className="w-full max-w-4xl">
         <MusikSpiller track={currentTrack} />
       </div>
 
-      {/* Musikliste nederst */}
       <div className="relative w-full max-w-4xl">
-        {/* Prev-knap */}
         <button className="absolute -left-12 top-1/2 -translate-y-1/2 bg-gray-200 px-3 py-2 rounded">◀</button>
 
         <MusikListe tracks={tracks} onSelect={setCurrentTrack} />
 
-        {/* Next-knap */}
         <button className="absolute -right-12 top-1/2 -translate-y-1/2 bg-gray-200 px-3 py-2 rounded">▶</button>
       </div>
     </div>

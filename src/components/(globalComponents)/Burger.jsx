@@ -5,7 +5,7 @@ export default function Burger() {
   return (
     <>
       {/* Burger-knap */}
-      <button popovertarget="mypopover" className=" group flex flex-col justify-center items-center gap-1.5 z-50 relative">
+      <button popoverTarget="mypopover" className=" group flex flex-col justify-center items-center gap-1.5 z-50 relative">
         <span className="bg-white block h-0.5 w-6 rounded transition-all duration-300 group-open:rotate-45 group-open:translate-y-2"></span>
         <span className="bg-white block h-0.5 w-6 rounded transition-all duration-300 group-open:opacity-0"></span>
         <span className="bg-white block h-0.5 w-6 rounded transition-all duration-300 group-open:-rotate-45 group-open:-translate-y-2"></span>

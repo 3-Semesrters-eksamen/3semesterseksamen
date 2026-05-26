@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import H1 from "@/components/(globalComponents)/H1";
+import H2 from "@/components/(globalComponents)/H2";
 import PinkFrame from "@/components/(globalComponents)/PinkFrame";
 
 export default function ClubGallery() {
@@ -19,8 +19,8 @@ export default function ClubGallery() {
   const row2 = gallery.filter((_, i) => i % 2 === 1);
 
   return (
-    <div className="flex flex-col items-center mt-10 relative max-w-[1200px] mx-auto px-4">
-      <H1 className="text-white text-xl mb-6">NIGHT CLUB GALLERY</H1>
+    <div className="flex flex-col items-center mt-10 relative max-w-[1200px] mx-auto px-4 mb-16">
+      <H2>NIGHT CLUB GALLERY</H2>
 
       {/* HORIZONTAL SCROLL */}
       <div className="overflow-x-auto w-full">
