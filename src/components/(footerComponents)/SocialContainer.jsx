@@ -8,13 +8,13 @@ const tweets = [
 export default function SocialContainer() {
   return (
     <div>
-      <p className="mb-6 text-[0.62rem] font-bold uppercase tracking-[0.3em] text-[#e8004d]">Recent Tweets</p>
+      <p className="mb-14 3xl:text-base font-bold uppercase tracking-[0.3em] text-nightclub-pink">Recent Tweets</p>
       {tweets.map((tweet) => (
         <div key={tweet.id} className="flex gap-3 mb-4">
-          <FaTwitter className="mt-1 shrink-0 text-[#e8004d]" size={16} />
+          <FaTwitter className="mt-1 shrink-0 text-nightclub-pink" size={16} />
           <div>
-            <p className="text-white text-sm font-semibold leading-snug">{tweet.text}</p>
-            <span className="text-pink-500 text-xs">{tweet.time}</span>
+            <p className="text-white text-sm font-normal leading-snug">{tweet.text}</p>
+            <span className="text-nightclub-pink text-xs">{tweet.time}</span>
           </div>
         </div>
       ))}

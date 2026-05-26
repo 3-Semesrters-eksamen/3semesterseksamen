@@ -13,7 +13,7 @@ export default function FooterContainer({ colLeft, colMiddle, colRight }) {
       </div>
 
       {/* Bottom bar */}
-      <div className="relative border-t border-white/[0.07] px-8 py-6 md:px-16">
+      <div className="relative px-8 py-6 md:px-16">
         {/* Mobile */}
         <div className="flex flex-col items-center gap-5 md:hidden">
           <SocialConList />
