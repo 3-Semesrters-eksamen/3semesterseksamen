@@ -1,7 +1,21 @@
 @import "tailwindcss";
 
+/* max-w-[1200px] mx-auto px-4 */
+
 @theme {
   --font-sans: var(--font-ubuntu);
+
+  --breakpoint-xs: 480px;
+  --breakpoint-3xl: 1200px;
+
+  --text-xs: clamp(0.75rem, 1.8vw, 0.85rem);
+  --text-sm: clamp(0.875rem, 2vw, 1rem);
+  --text-base: clamp(1rem, 2.5vw, 1.125rem);
+  --text-lg: clamp(1.25rem, 3vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 4vw, 2rem);
+  --text-2xl: clamp(2rem, 5vw, 3rem);
+
+  --color-nightclub-pink: oklch(65% 0.23 10);
 }
 
 nav[popover] {
@@ -54,12 +68,6 @@ h2 {
 
 h3 {
   font-size: var(--font-lg);
-  font-weight: 400;
-}
-
-p {
-  font-size: var(--font-base);
-  line-height: 1.6;
   font-weight: 400;
 }
 
