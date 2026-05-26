@@ -8,7 +8,7 @@ export default function MusikSpiller({ track }) {
   return (
     <div className="flex items-center justify-between p-4 border rounded-lg w-full">
       {/* Venstre: Billede */}
-      <img src={track.image} alt={track.title} className="w-44 h-44 object-cover rounded" />
+      <img src={track.image} alt={track.title} className="w-66 h-66 object-cover rounded" />
 
       {/* Højre: Titel over player */}
       <div className="flex flex-col flex-1 max-w-xl">

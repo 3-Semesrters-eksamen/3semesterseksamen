@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import NavPinkFrame from "../(globalComponents)/NavPinkFrame";
 import { BiSolidLeftArrow, BiSolidRightArrow, BiPlay, BiPause } from "react-icons/bi";
-import H1 from "../(globalComponents)/H1";
+import H2 from "../(globalComponents)/H2";
 
 export default function LatestVideo() {
   const videos = [{ src: "/media/video-crowd.mp4" }, { src: "/media/video-2.mp4" }, { src: "/media/video-3.mp4" }];
@@ -50,16 +50,12 @@ export default function LatestVideo() {
   };
 
   return (
-    <div className="flex flex-col items-center mt-10">
-      <H1 className="text-white text-xl mb-6">LATEST VIDEO</H1>
+    <div className="flex flex-col items-center mt-10 mb-16 relative max-w-[1200px] mx-auto">
+      <H2>LATEST VIDEO</H2>
 
-      {/* Video med pink border */}
       <div className="relative w-full max-w-3xl aspect-[16/9] border-t-2 border-b-2 border-[oklch(65%_0.23_370)]">
-        {/* Venstre trekant */}
-        <div className="absolute left-0 top-0 h-full w-16 bg-[oklch(65%_0.23_370)] z-10" style={{ clipPath: "polygon(0 0, 100% -43px, -34px 100%)" }} />
-        {/* Højre trekant */}
-        <div className="absolute right-0 top-0 h-full w-16 bg-[oklch(65%_0.23_370)] z-10" style={{ clipPath: "polygon(100% 43px, 100% 100%, 34px 100%)" }} />
-
+        <div className="absolute left-0 top-0 h-full w-16 bg-[oklch(65%_0.23_370)] z-10" style={{ clipPath: "polygon(0 0, 100% -47px, -220px 100%)" }} />
+        <div className="absolute right-0 top-0 h-full w-16 bg-[oklch(65%_0.23_370)] z-10" style={{ clipPath: "polygon(100% 47px, 100% 100%, 220px 100%)" }} />
         <video ref={videoRef} className="w-full h-full object-cover shadow-lg" controls muted playsInline>
           <source src={videos[currentIndex].src} type="video/mp4" />
         </video>
