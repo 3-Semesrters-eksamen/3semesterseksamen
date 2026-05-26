@@ -13,38 +13,17 @@ async function getEvent(eventId) {
   }
 }
 
-async function getOccupiedTables(date) {
-  try {
-    const res = await fetch(`${API_URL}/reservations?date=${date}`, { cache: "no-store" });
-    if (!res.ok) return [];
-    const data = await res.json();
-    return Array.isArray(data) ? data.map((r) => parseInt(r.table)) : [];
-  } catch {
-    return [];
-  }
-}
-
 export default async function BookTableContainer({ searchParams }) {
   const params = await searchParams;
   const eventId = params?.eventId ? parseInt(params.eventId) : null;
-
-  let event = null;
-  let initialOccupied = [];
-
-  if (eventId) {
-    event = await getEvent(eventId);
-    if (event?.date) {
-      const dateStr = new Date(event.date).toISOString().split("T")[0];
-      initialOccupied = await getOccupiedTables(dateStr);
-    }
-  }
+  const event = eventId ? await getEvent(eventId) : null;
 
   return (
     <div className="bg-[#111] min-h-screen">
       <div className="pt-10">
         <LilleHero className="text-3xl md:text-5xl">BOOK A TABLE</LilleHero>
       </div>
-      <ReserveTable event={event} initialOccupied={initialOccupied} />
+      <ReserveTable event={event} eventId={eventId} apiUrl={process.env.NEXT_PUBLIC_API_URL} />
     </div>
   );
 }

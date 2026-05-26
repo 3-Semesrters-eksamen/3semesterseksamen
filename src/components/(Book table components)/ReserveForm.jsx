@@ -8,7 +8,7 @@ import Btn from "@/components/(globalComponents)/Btn";
 const inputBase = "bg-transparent border-b border-[#444] text-white placeholder-[#666] text-[13px] font-mono px-0 py-3 outline-none w-full transition-colors focus:border-[#c9a84c]";
 const inputErr = "bg-transparent border-b border-red-600 text-white placeholder-[#666] text-[13px] font-mono px-0 py-3 outline-none w-full";
 
-export default function ReserveForm({ selectedTable, eventId, eventDate, onTableConflict }) {
+export default function ReserveForm({ selectedTable, eventId, eventDate, onTableConflict, onDatePick }) {
   const [state, formAction, isPending] = useActionState(actionReserveTable, null);
   const [showModal, setShowModal] = useState(false);
 
@@ -42,7 +42,6 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
 
       <Form action={formAction} className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6" noValidate>
         {eventId && <input type="hidden" name="eventId" value={eventId} />}
-        {eventDate && <input type="hidden" name="date" value={new Date(eventDate).toISOString().split("T")[0]} />}
 
         {/* Name */}
         <div className="flex flex-col gap-1">
@@ -64,9 +63,9 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
           )}
         </div>
 
-        {/* Table — was "tableNumber", now "table" */}
+        {/* Table */}
         <div className="flex flex-col gap-1">
-          <input name="table" type="number" placeholder="Table Number" value={selectedTable ?? undefined} readOnly={!!selectedTable} onChange={() => {}} className={`${errors("table") ? inputErr : inputBase} ${selectedTable ? "text-[#c9a84c] cursor-default" : ""}`} />
+          <input name="table" type="number" placeholder="Table Number" value={selectedTable ?? ""} readOnly={!!selectedTable} onChange={() => {}} className={`${errors("table") ? inputErr : inputBase} ${selectedTable ? "text-[#c9a84c] cursor-default" : ""}`} />{" "}
           {errors("table") && (
             <span className="text-red-400 text-[11px] font-mono" role="alert">
               {errors("table")}
@@ -84,10 +83,10 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
           )}
         </div>
 
-        {/* Date — free input if no event, locked gold display if event */}
+        {/* Date — fri valg hvis ingen event, låst hvis event */}
         {!eventDate ? (
           <div className="flex flex-col gap-1">
-            <input name="date" type="date" min={new Date().toISOString().split("T")[0]} className={errors("date") ? inputErr : inputBase} style={{ colorScheme: "dark" }} />
+            <input name="date" type="date" min={new Date().toISOString().split("T")[0]} className={errors("date") ? inputErr : inputBase} style={{ colorScheme: "dark" }} onChange={(e) => onDatePick?.(e.target.value)} />
             {errors("date") && (
               <span className="text-red-400 text-[11px] font-mono" role="alert">
                 {errors("date")}
@@ -110,7 +109,7 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
           </div>
         )}
 
-        {/* Phone — was "contact", now "phone" */}
+        {/* Phone */}
         <div className="flex flex-col gap-1">
           <input name="phone" type="tel" placeholder="Your Phone Number" className={errors("phone") ? inputErr : inputBase} />
           {errors("phone") && (
@@ -118,11 +117,6 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
               {errors("phone")}
             </span>
           )}
-        </div>
-
-        {/* Comment */}
-        <div className="flex flex-col gap-1 col-span-1 md:col-span-2">
-          <textarea name="comments" rows={6} placeholder="Your Comment" className={`${inputBase} resize-y`} />
         </div>
 
         {/* Submit */}
