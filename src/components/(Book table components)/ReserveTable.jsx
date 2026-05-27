@@ -55,7 +55,7 @@ export default function ReserveTable({ event, eventId, apiUrl }) {
   return (
     <div>
       {event && (
-        <div className="mx-6 sm:mx-10 lg:mx-20 mb-4 px-4 py-3 border border-[#c9a84c]/30 bg-[#c9a84c]/5 rounded font-mono">
+        <div className="mx-6 sm:mx-10 lg:mx-20 mb-4 px-4 py-3 border border-[#c9a84c]/30 bg-[#c9a84c]/5 rounded">
           <span className="text-[#c9a84c] text-[10px] tracking-[0.2em] uppercase block mb-0.5">Event</span>
           <span className="text-[#e8d080] font-semibold block">{event.name || event.title}</span>
           {event.date && (
@@ -73,11 +73,11 @@ export default function ReserveTable({ event, eventId, apiUrl }) {
 
       <PickTable onSelectTable={handleSelectTable} selectedTable={selectedTable} occupiedTables={occupiedTables} />
 
-      <p className="text-center text-[12px] font-mono text-[#555] mb-8 px-4">{selectedTable ? `✓ Table ${selectedTable} selected — fill in your details below` : "Click a table above to select it"}</p>
+      <p className="text-center text-[12px]  text-[#555] mb-8 px-4">{selectedTable ? `✓ Table ${selectedTable} selected — fill in your details below` : "Click a table above to select it"}</p>
 
       <div id="reserve-form-section" className="max-w-2xl mx-auto px-6 sm:px-10 pb-20">
-        <p className="text-white font-mono font-bold text-sm tracking-[0.2em] mb-6 uppercase">Book a Table</p>
-        <ReserveForm selectedTable={selectedTable} eventId={eventId} eventDate={eventDate} onTableConflict={handleTableConflict} onDatePick={!eventId ? handleDatePick : undefined} />
+        <p className="text-white  font-bold text-sm tracking-[0.2em] mb-6 uppercase">Book a Table</p>
+        <ReserveForm selectedTable={selectedTable} eventId={eventId} eventDate={eventDate} onTableConflict={handleTableConflict} onDatePick={!eventId ? handleDatePick : undefined} apiUrl={apiUrl} />
       </div>
     </div>
   );
