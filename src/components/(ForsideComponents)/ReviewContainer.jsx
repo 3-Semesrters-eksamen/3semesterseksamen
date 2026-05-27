@@ -47,7 +47,7 @@ const ReviewContainer = ({ testimonials }) => {
               href={testimonial.twitter}
               target="_blank"
               className="text-gray-400 border border-white p-2 flex items-center justify-center 
-                 hover:text-pink-500 hover:border-pink-500 transition-colors duration-200"
+                 hover:text-nightclub-pink hover:border-nightclub-pink transition-colors duration-200"
             >
               <FaTwitter size={18} />
             </a>
@@ -56,7 +56,7 @@ const ReviewContainer = ({ testimonials }) => {
 
         <div className="flex gap-2">
           {safeTestimonials.map((_, index) => (
-            <button key={index} onClick={() => setCurrent(index)} className={`w-3 h-3 transition-colors duration-300 ${current === index ? "bg-pink-500" : "bg-white hover:bg-gray-400"}`} />
+            <button key={index} onClick={() => setCurrent(index)} className={`w-3 h-3 transition-colors duration-300 ${current === index ? "bg-nightclub-pink" : "bg-white hover:bg-gray-400"}`} />
           ))}
         </div>
       </div>
