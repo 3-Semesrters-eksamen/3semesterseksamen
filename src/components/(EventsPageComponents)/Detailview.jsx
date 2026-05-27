@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Button from "@/components/(globalComponents)/Btn";
+import CommentList from "@/components/(EventsPageComponents)/CommentList";
+import LeaveComment from "@/components/(EventsPageComponents)/LeaveComment";
 
 const Detailview = async ({ slug }) => {
   const eventRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/events/${slug}`, { cache: "no-store" });
@@ -85,19 +87,12 @@ const Detailview = async ({ slug }) => {
 
         {/* Kommentarer */}
         <div className="py-12">
-          <h2 className="text-2xl font-bold tracking-widest mb-8">{comments.length} COMMENTS</h2>
+          <CommentList initialComments={comments} apiUrl={process.env.NEXT_PUBLIC_API_URL} />
 
-          {comments.map((comment) => (
-            <div key={comment.id} className="border-b border-gray-800 py-6 ">
-              <p className="text-white font-bold mb-1">
-                {comment.name}
-                <span className="text-nightclub-pink font-normal text-xs ml-2">Posted {new Date(comment.date).toLocaleDateString("en-US", { day: "2-digit", month: "short", year: "numeric" })}</span>
-              </p>
-              <p className="text-gray-300 text-sm leading-relaxed">{comment.content}</p>
-            </div>
-          ))}
-
-          {comments.length === 0 && <p className="text-gray-500 text-sm">Ingen kommentarer endnu.</p>}
+          <div className="mt-10">
+            <h3 className="text-lg font-bold tracking-widest mb-6">LEAVE A COMMENT</h3>
+            <LeaveComment eventId={event.id} apiUrl={process.env.NEXT_PUBLIC_API_URL} />
+          </div>
         </div>
       </div>
     </article>
