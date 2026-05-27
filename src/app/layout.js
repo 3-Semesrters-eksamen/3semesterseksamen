@@ -15,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${ubuntu.variable} antialiased`}>
-      <body className="flex flex-col">{children}</body>
+      <body className="flex flex-col font-sans">{children}</body>
     </html>
   );
 }
