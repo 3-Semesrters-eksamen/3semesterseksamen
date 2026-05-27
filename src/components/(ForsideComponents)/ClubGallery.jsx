@@ -28,7 +28,7 @@ export default function ClubGallery() {
   };
 
   return (
-    <div className="flex flex-col items-center mt-10 w-full mb-16">
+    <div className="flex flex-col items-center mt-10 w-full mb-16  max-w-[2200px] mx-auto">
       <H2>NIGHT CLUB GALLERY</H2>
 
       <div className="flex flex-wrap justify-content w-full  mt-6">

@@ -3,7 +3,7 @@ import H2 from "@/components/(globalComponents)/H2";
 
 export default function FeaturedEventsContainer({ events }) {
   return (
-    <section className="relative py-16 flex flex-col items-center px-4 bg-cover bg-center w-full " style={{ backgroundImage: "url('/backgrounds/slider_bg_overlay.png')" }}>
+    <section className="relative py-16 flex flex-col items-center px-4 bg-cover bg-center w-full  max-w-[2200px] mx-auto " style={{ backgroundImage: "url('/backgrounds/slider_bg_overlay.png')" }}>
       <div className="absolute  inset-0 bg-black/60" />
 
       <div

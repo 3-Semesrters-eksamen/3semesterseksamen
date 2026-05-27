@@ -6,7 +6,7 @@ const EventCard = ({ slug, title, date, location, excerpt, image }) => {
   const time = rawTime.slice(0, 5);
 
   return (
-    <article className="flex flex-col lg:flex-row lg:even:flex-row-reverse lg:h-[350px] max-w-[1400px] mx-auto">
+    <article className="flex flex-col lg:flex-row lg:even:flex-row-reverse lg:h-[350px] max-w-[2200px] mx-auto">
       {/* Billede */}
       <div className="relative w-full lg:w-1/2 h-[220px] lg:h-full">
         <Image src={image} alt={title} fill className="object-cover object-top" />

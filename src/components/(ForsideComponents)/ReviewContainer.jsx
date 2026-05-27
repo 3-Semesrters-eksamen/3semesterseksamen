@@ -14,7 +14,7 @@ const ReviewContainer = ({ testimonials }) => {
 
   return (
     <section
-      className="relative py-16 flex flex-col items-center text-white text-center px-6"
+      className="w-full max-w-[2200px] mx-auto py-16 flex flex-col items-center text-white text-center px-6 relative"
       style={{
         backgroundImage: "url('/backgrounds/footerbg.jpg')",
         backgroundSize: "cover",
