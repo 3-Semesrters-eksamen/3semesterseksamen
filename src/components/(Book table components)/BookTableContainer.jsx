@@ -19,7 +19,7 @@ export default async function BookTableContainer({ searchParams }) {
   const event = eventId ? await getEvent(eventId) : null;
 
   return (
-    <div className="bg-[#111] min-h-screen">
+    <div className="bg-[#111] max-w-[2200px] mx-auto">
       <div>
         <LilleHero className="text-3xl md:text-5xl">BOOK A TABLE</LilleHero>
       </div>
