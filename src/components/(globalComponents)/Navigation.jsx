@@ -9,7 +9,7 @@ const Navigation = () => {
       <nav>
         <NavPinkFrame>
           <div className="container-base flex items-center justify-between py-4 relative">
-            <SmallLogo className="ml-10" href="/" />
+            <SmallLogo className="ml-10" />
             <div className="lg:hidden">
               <Burger />
             </div>
