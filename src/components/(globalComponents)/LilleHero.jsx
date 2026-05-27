@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function LilleHero({ children, className = "" }) {
   return (
-    <section className="relative flex flex-col items-center text-white text-center mb-15 " style={{ backgroundImage: "url('/backgrounds/footerbg.jpg')", backgroundSize: "cover", backgroundPosition: "center", width: "100%", height: "auto" }}>
+    <section className="relative flex flex-col items-center text-white text-center mb-15 max-w-[1400px] mx-auto" style={{ backgroundImage: "url('/backgrounds/footerbg.jpg')", backgroundSize: "cover", backgroundPosition: "center", width: "100%", height: "auto" }}>
       <div className="absolute inset-0 bg-black/85 inline-block z-9" />
       <div className="item-center p-5 pt-10 z-9">
         <h1 className={`text-2xl tracking-wide ${className}`}>{children}</h1>
