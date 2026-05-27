@@ -7,14 +7,14 @@ import LilleHero from "@/components/(globalComponents)/LilleHero";
 
 export default function Login() {
   return (
-    <>
-      <Navigation />
-      <LilleHero className="text-3xl md:text-5xl">CONTACT US</LilleHero>
-      <ContactContainer />
-      <div className="bg-black p-10 inline-block">
-        <Btn label="Sign In" />
-      </div>
-      <Footer />
-    </>
+    <div className="flex flex-col" style={{ backgroundImage: "url('/backgrounds/pattern_bg.jpg')" }}>
+      <>
+        <Navigation />
+        <LilleHero className="text-3xl md:text-5xl">CONTACT US</LilleHero>
+        <ContactContainer />
+
+        <Footer />
+      </>
+    </div>
   );
 }
