@@ -8,6 +8,7 @@ import LatestVideo from "@/components/(ForsideComponents)/LatestVideo";
 import ReviewContainer from "@/components/(ForsideComponents)/ReviewContainer";
 import NewsSubsriberContainer from "@/components/(ForsideComponents)/NewsSubscribeContainer";
 import Footer from "@/components/(footerComponents)/Footer";
+import { Suspense } from "react";
 
 export default async function Home() {
   const testimonialsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/testimonials`, { cache: "no-store" });
@@ -18,7 +19,15 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col" style={{ backgroundImage: "url('/backgrounds/pattern_bg.jpg')" }}>
-      <Hero />
+      <Suspense
+        fallback={
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
+            <img src="./loader/madbars.gif" alt="Loader..." />
+          </div>
+        }
+      >
+        <Hero />
+      </Suspense>
       <Navigation />
       <WelcomeClub />
       <FeaturedEvents events={featuredEvents} />
@@ -26,8 +35,7 @@ export default async function Home() {
       <Audio />
       <LatestVideo />
       <ReviewContainer testimonials={testimonials} />
-      <NewsSubsriberContainer />
-      <Footer />
+      <NewsSubsriberContainer /> <Footer />
     </div>
   );
 }
