@@ -2,12 +2,10 @@ import EventCard from "./EventCard";
 import Link from "next/link";
 
 const EventsList = ({ events, currentPage, totalPages }) => {
-  // Sikring: hvis events ikke er et array → lav det til et tomt array
   const safeEvents = Array.isArray(events) ? events : [];
 
   return (
     <section className="bg-black">
-      {/* Sikret map – crasher ikke længere */}
       {safeEvents.map((event) => (
         <EventCard
           key={event.id}
@@ -20,6 +18,9 @@ const EventsList = ({ events, currentPage, totalPages }) => {
           image={
             event.asset?.url ? `${process.env.NEXT_PUBLIC_API_URL}${event.asset.url}` : "/fallback.jpg" // valgfri fallback
           }
+          content={event.content}
+          lineup={event.lineup}
+          schedule={event.schedule}
         />
       ))}
 
