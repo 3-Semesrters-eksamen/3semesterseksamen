@@ -8,11 +8,12 @@ export const metadata = {
 
 export default async function BookTablePage({ searchParams }) {
   return (
-    <>
-      <Navigation />
-      <BookTableContainer searchParams={searchParams} />
-
-      <Footer />
-    </>
+    <div className="flex flex-col" style={{ backgroundImage: "url('/backgrounds/pattern_bg.jpg')" }}>
+      <>
+        <Navigation />
+        <BookTableContainer searchParams={searchParams} />
+        <Footer />
+      </>
+    </div>
   );
 }

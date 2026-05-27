@@ -20,7 +20,7 @@ export default async function BookTableContainer({ searchParams }) {
 
   return (
     <div className="bg-[#111] min-h-screen">
-      <div className="pt-10">
+      <div>
         <LilleHero className="text-3xl md:text-5xl">BOOK A TABLE</LilleHero>
       </div>
       <ReserveTable event={event} eventId={eventId} apiUrl={process.env.NEXT_PUBLIC_API_URL} />
