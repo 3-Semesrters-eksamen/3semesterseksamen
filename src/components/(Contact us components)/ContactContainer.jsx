@@ -1,6 +1,6 @@
-import ContactUs from "./ContactUs";
+import ContactUsForm from "./ContactUsForm";
 const ContactContainer = () => {
-  return <ContactUs />;
+  return <ContactUsForm />;
 };
 
 export default ContactContainer;
