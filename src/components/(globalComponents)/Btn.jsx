@@ -19,7 +19,7 @@ export default function Button({ href, label, onClick, className = "", type = "b
 
   const textVariants = {
     rest: { color: "#ffffff", transition: { duration: DURATION, ease: EASE } },
-    hover: { color: "#ff2d78", transition: { duration: DURATION, ease: EASE } },
+    hover: { color: "color-nightclub-pink", transition: { duration: DURATION, ease: EASE } },
   };
 
   // Top line: slides in from the left (origin-left)
@@ -37,8 +37,8 @@ export default function Button({ href, label, onClick, className = "", type = "b
   const inner = (
     <motion.span className="group inline-flex flex-col items-center justify-center gap-2.5 cursor-pointer" animate={controls} initial="rest" onHoverStart={handleHoverStart} onHoverEnd={handleHoverEnd}>
       {/* Top line — slides in from the left */}
-      <span className="relative flex w-full h-px bg-white overflow-hidden">
-        <motion.span className="absolute inset-0 bg-[#ff2d78] origin-left" variants={lineLeftVariants} />
+      <span className="relative flex w-[150%] h-px bg-white overflow-hidden">
+        <motion.span className="absolute inset-0 bg-nightclub-pink origin-left" variants={lineLeftVariants} />
       </span>
 
       {/* Text */}
@@ -49,8 +49,8 @@ export default function Button({ href, label, onClick, className = "", type = "b
       </span>
 
       {/* Bottom line — slides in from the right */}
-      <span className="relative flex w-full h-px bg-white overflow-hidden">
-        <motion.span className="absolute inset-0 bg-[#ff2d78] origin-right" variants={lineRightVariants} />
+      <span className="relative flex w-[150%] h-px bg-white overflow-hidden">
+        <motion.span className="absolute inset-0 bg-nightclub-pink origin-right" variants={lineRightVariants} />
       </span>
     </motion.span>
   );

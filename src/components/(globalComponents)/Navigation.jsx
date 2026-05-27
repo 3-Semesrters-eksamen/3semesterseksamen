@@ -5,7 +5,7 @@ import NavPinkFrame from "@/components/(globalComponents)/NavPinkFrame";
 
 const Navigation = () => {
   return (
-    <div className="top-0 left-0 w-full z-100 bg-black sticky">
+    <div className="top-0 left-0 w-full z-100 bg-black sticky max-w-[1400px] mx-auto">
       <nav>
         <NavPinkFrame>
           <div className="container-base flex items-center justify-between py-4 relative">
