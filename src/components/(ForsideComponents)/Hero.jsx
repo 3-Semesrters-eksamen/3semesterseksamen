@@ -12,7 +12,7 @@ const Hero = () => {
   const [bgImage] = useState(() => (Math.random() > 0.5 ? "/hero/header_bg_1.jpg" : "/hero/header_bg_2.jpg"));
 
   return (
-    <section className="relative w-full pt-20 h-[47rem] md:h-[28rem] lg:h-[36rem] bg-black">
+    <section className=" max-w-[2200px] mx-auto relative w-full pt-20 h-[47rem] md:h-[28rem] lg:h-[36rem] bg-black">
       <Image src={bgImage} alt="Night Club" fill className="object-cover" priority />
       <div className="relative z-10 flex flex-col items-center justify-center h-full gap-2">
         {/* First part: ruller ned fra toppen */}
