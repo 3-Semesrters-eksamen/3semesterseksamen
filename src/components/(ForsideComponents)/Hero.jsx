@@ -32,8 +32,8 @@ const Hero = () => {
 
         {/* Knapper: side om side, centreret under logoet */}
         <motion.div className="flex flex-row items-center gap-6 mt-6" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: DURATION, ease: EASE, delay: DURATION * 2 }}>
-          <ViewEventBtn />
-          <BookTableBtn />
+          <ViewEventBtn href="/Event" />
+          <BookTableBtn href="/BookTable" />
         </motion.div>
       </div>
     </section>
