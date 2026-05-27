@@ -13,8 +13,8 @@ export default function ViewEventsButton({ href = "/events", className = "" }) {
   const handleHoverEnd = () => controls.start("rest");
 
   const textVariants = {
-    rest: { color: "#9a9a9a", transition: { duration: DURATION, ease: EASE } },
-    hover: { color: "#ff2d78", transition: { duration: DURATION, ease: EASE } },
+    rest: { color: "white", transition: { duration: DURATION, ease: EASE } },
+    hover: { color: "nightclub-pink", transition: { duration: DURATION, ease: EASE } },
   };
 
   const lineTopVariants = {
@@ -45,26 +45,26 @@ export default function ViewEventsButton({ href = "/events", className = "" }) {
 
         {/* Top — slider fra venstre */}
         <span className="absolute top-0 left-0 w-full h-px overflow-hidden">
-          <motion.span className="absolute inset-0 bg-[#ff2d78] origin-left" variants={lineTopVariants} />
+          <motion.span className="absolute inset-0 bg-nightclub-pink origin-left" variants={lineTopVariants} />
         </span>
 
         {/* Bund — slider fra højre */}
         <span className="absolute bottom-0 left-0 w-full h-px overflow-hidden">
-          <motion.span className="absolute inset-0 bg-[#ff2d78] origin-right" variants={lineBottomVariants} />
+          <motion.span className="absolute inset-0 bg-nightclub-pink origin-right" variants={lineBottomVariants} />
         </span>
 
         {/* Venstre — slider fra top */}
         <span className="absolute top-0 left-0 h-full w-px overflow-hidden">
-          <motion.span className="absolute inset-0 bg-[#ff2d78] origin-top" variants={lineLeftVariants} />
+          <motion.span className="absolute inset-0 bg-nightclub-pink origin-top" variants={lineLeftVariants} />
         </span>
 
         {/* Højre — slider fra bund */}
         <span className="absolute top-0 right-0 h-full w-px overflow-hidden">
-          <motion.span className="absolute inset-0 bg-[#ff2d78] origin-bottom" variants={lineRightVariants} />
+          <motion.span className="absolute inset-0 bg-nightclub-pink origin-bottom" variants={lineRightVariants} />
         </span>
 
         {/* Tekst */}
-        <motion.span className="relative font-montserrat text-[11px] font-bold tracking-[0.22em] uppercase whitespace-nowrap select-none" variants={textVariants}>
+        <motion.span className="relative  text-sm font-normaltracking-[0.22em] uppercase whitespace-nowrap select-none" variants={textVariants}>
           View Events
         </motion.span>
       </motion.span>

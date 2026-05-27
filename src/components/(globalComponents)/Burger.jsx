@@ -1,28 +1,27 @@
 "use client";
-import NavListe from "./NavListe";
+import BurgerNavListe from "@/components/(globalComponents)/BurgerNavListe";
 
 export default function Burger() {
   return (
     <>
-      <button popoverTarget="mypopover" className="flex flex-col justify-center items-center gap-1.5 z-50 ">
-        <span className="bg-white block h-0.5 w-6 rounded "></span>
+      <button popoverTarget="mypopover" className="flex flex-col justify-center items-center gap-1.5 z-50">
+        <span className="bg-white block h-0.5 w-6 rounded"></span>
         <span className="bg-white block h-0.5 w-6 rounded"></span>
         <span className="bg-white block h-0.5 w-6 rounded"></span>
       </button>
 
-      <nav popover="auto" id="mypopover" className="fixed inset-0 bg-black/90 w-full h-full border-none p-0 m-0">
+      <nav popover="auto" id="mypopover" className="fixed inset-0 bg-black/90 w-full h-full border-none p-0 m-0 z-100">
         <button popoverTarget="mypopover" popoverTargetAction="hide" className="absolute top-10 right-10 text-white text-6xl hover:text-nightclub-pink transition">
           &times;
         </button>
 
-        <div className="flex  flex-col items-center justify-center w-full h-full">
-          <NavListe />
+        <div className="flex flex-col items-center justify-center w-full h-full">
+          <BurgerNavListe />
         </div>
       </nav>
     </>
   );
 }
-
 // "use client";
 // import NavListe from "./NavListe";
 

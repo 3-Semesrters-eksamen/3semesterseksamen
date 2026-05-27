@@ -7,9 +7,9 @@ export default function BookTableBtn() {
   const router = useRouter();
 
   return (
-    <motion.button className="relative px-8 py-4 text-white font-semibold tracking-widest uppercase text-sm overflow-hidden bg-fuchsia-600 shadow-md transition" whileHover="hover" whileTap={{ scale: 0.97 }} onClick={() => router.push("/BookTable")}>
+    <motion.button className="relative px-8 py-4 text-white font-normal tracking-widest uppercase text-sm overflow-hidden bg-fuchsia-600 shadow-md transition" whileHover="hover" whileTap={{ scale: 0.97 }} onClick={() => router.push("/BookTable")}>
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-pink-500 to-fuchsia-600"
+        className="absolute inset-0 bg-gradient-to-r from-pink-500 to-fuchsia-600 "
         variants={{
           hover: { opacity: 0.3 },
         }}

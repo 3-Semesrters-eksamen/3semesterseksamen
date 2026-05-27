@@ -14,7 +14,7 @@ export default function Audio() {
   const [currentTrack, setCurrentTrack] = useState(tracks[0]);
 
   return (
-    <div className="flex flex-col items-center w-full bg-black  max-w-[2200px] mx-auto">
+    <div className="flex flex-col items-center w-full bg-black  max-w-[2200px] mx-auto py-16">
       <H2>NIGHT CLUB TRACK</H2>
       <div className="w-full max-w-4xl">
         <MusikSpiller track={currentTrack} />

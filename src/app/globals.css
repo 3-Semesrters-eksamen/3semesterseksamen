@@ -48,6 +48,11 @@ nav[popover]:popover-open {
 
   --section-padding: clamp(2rem, 5vw, 5rem);
   --container-padding: clamp(1rem, 4vw, 2rem);
+
+  :focus-visible {
+    outline: 2px solid oklch(65% 0.23 10);
+    outline-offset: 2px;
+  }
 }
 
 body {
