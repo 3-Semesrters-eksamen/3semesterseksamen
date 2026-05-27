@@ -1,3 +1,5 @@
+import Btn from "../(globalComponents)/Btn";
+
 const CommentContainer = () => {
   return (
     <div>
@@ -11,7 +13,7 @@ const CommentContainer = () => {
         <div className="flex flex-col gap-3 mb-6">
           <input
             className="
-            w-full bg-transparent border border-white/15 rounded-sm
+            w-full bg-transparent border border-white rounded-sm
             text-white text-sm tracking-wider px-4 py-4 outline-none
             transition-colors duration-200 placeholder-white/30
             focus:border-[#e8003a]
@@ -21,7 +23,7 @@ const CommentContainer = () => {
           />
           <input
             className="
-            w-full bg-transparent border border-white/15 rounded-sm
+            w-full bg-transparent border border-white rounded-sm
             text-white text-sm tracking-wider px-4 py-4 outline-none
             transition-colors duration-200 placeholder-white/30
             focus:border-[#e8003a]
@@ -31,7 +33,7 @@ const CommentContainer = () => {
           />
           <textarea
             className="
-            w-full bg-transparent border border-white/15 rounded-sm
+            w-full bg-transparent border border-white rounded-sm
             text-white text-sm tracking-wider px-4 py-4 outline-none
             transition-colors duration-200 placeholder-white/30
             focus:border-[#e8003a] resize-y min-h-80
@@ -41,24 +43,7 @@ const CommentContainer = () => {
         </div>
 
         <div className="flex justify-end">
-          <button
-            className="
-            bg-transparent border-none text-white text-[0.82rem] font-bold
-            tracking-[0.14em] cursor-pointer px-0 py-[0.4rem]
-            relative transition-colors duration-200
-            hover:text-[#e8003a] group
-          "
-          >
-            SEND
-            {/* ::after underline via a sibling span */}
-            <span
-              className="
-              absolute bottom-0 left-0 right-0 h-px
-              bg-white/40 transition-colors duration-200
-              group-hover:bg-[#e8003a]
-            "
-            />
-          </button>
+          <Btn label="Submit" />
         </div>
       </div>
     </div>
