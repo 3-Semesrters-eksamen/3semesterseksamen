@@ -3,26 +3,15 @@ import { useState, useEffect } from "react";
 import PickTable from "./PickTable";
 import ReserveForm from "./ReserveForm";
 
-export default function ReserveTable({ event, eventId, apiUrl }) {
+export default function ReserveTable({ event, eventId, apiUrl, initialOccupiedTables = [] }) {
   const [selectedTable, setSelectedTable] = useState(null);
-  const [occupiedTables, setOccupiedTables] = useState([]);
+  const [occupiedTables, setOccupiedTables] = useState(initialOccupiedTables);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const t = params.get("table");
     if (t) setSelectedTable(parseInt(t));
   }, []);
-
-  useEffect(() => {
-    if (!eventId) return;
-    fetch(`${apiUrl}/reservations?eventId=${eventId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        const occupied = Array.isArray(data) ? data.map((r) => parseInt(r.table)) : [];
-        setOccupiedTables(occupied);
-      })
-      .catch(() => {});
-  }, [eventId]);
 
   const handleDatePick = async (dateStr) => {
     if (!dateStr) return;
@@ -73,10 +62,10 @@ export default function ReserveTable({ event, eventId, apiUrl }) {
 
       <PickTable onSelectTable={handleSelectTable} selectedTable={selectedTable} occupiedTables={occupiedTables} />
 
-      <p className="text-center text-[12px]  text-[#555] mb-8 px-4">{selectedTable ? `✓ Table ${selectedTable} selected — fill in your details below` : "Click a table above to select it"}</p>
+      <p className="text-center text-[12px] text-[#555] mb-8 px-4">{selectedTable ? `✓ Table ${selectedTable} selected — fill in your details below` : "Click a table above to select it"}</p>
 
       <div id="reserve-form-section" className="max-w-2xl mx-auto px-6 sm:px-10 pb-20">
-        <p className="text-white  font-bold text-sm tracking-[0.2em] mb-6 uppercase">Book a Table</p>
+        <p className="text-white font-bold text-sm tracking-[0.2em] mb-6 uppercase">Book a Table</p>
         <ReserveForm selectedTable={selectedTable} eventId={eventId} eventDate={eventDate} onTableConflict={handleTableConflict} onDatePick={!eventId ? handleDatePick : undefined} apiUrl={apiUrl} />
       </div>
     </div>

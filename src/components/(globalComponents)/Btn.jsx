@@ -18,7 +18,7 @@ export default function Button({ href, label, onClick, className = "", type = "b
   };
 
   const textVariants = {
-    rest: { color: "#ffffff", transition: { duration: DURATION, ease: EASE } },
+    rest: { color: "white", transition: { duration: DURATION, ease: EASE } },
     hover: { color: "color-nightclub-pink", transition: { duration: DURATION, ease: EASE } },
   };
 
@@ -54,17 +54,16 @@ export default function Button({ href, label, onClick, className = "", type = "b
       </span>
     </motion.span>
   );
-
   if (href) {
     return (
-      <Link href={href} className={`inline-block ${className}`}>
+      <Link href={href} className={`inline-block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[oklch(65%_0.23_10)] ${className}`}>
         {inner}
       </Link>
     );
   }
 
   return (
-    <button type={type} disabled={disabled} onClick={onClick} className={`inline-block bg-transparent border-none outline-none ${className}`} {...props}>
+    <button type={type} disabled={disabled} onClick={onClick} className={`inline-block bg-transparent border-none  focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[oklch(65%_0.23_10)] ${className}`} {...props}>
       {inner}
     </button>
   );

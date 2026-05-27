@@ -16,7 +16,8 @@ const CommentContainer = () => {
             w-full bg-transparent border border-white rounded-sm
             text-white text-sm tracking-wider px-4 py-4 outline-none
             transition-colors duration-200 placeholder-white/30
-            focus:border-[#e8003a]
+            /* Erstat #e8003a med oklch i alle inputs */
+focus:border-[oklch(65%_0.23_10)]
           "
             type="text"
             placeholder="Your Name"
@@ -26,7 +27,8 @@ const CommentContainer = () => {
             w-full bg-transparent border border-white rounded-sm
             text-white text-sm tracking-wider px-4 py-4 outline-none
             transition-colors duration-200 placeholder-white/30
-            focus:border-[#e8003a]
+            /* Erstat #e8003a med oklch i alle inputs */
+focus:border-[oklch(65%_0.23_10)]
           "
             type="email"
             placeholder="Your Email"
@@ -36,7 +38,8 @@ const CommentContainer = () => {
             w-full bg-transparent border border-white rounded-sm
             text-white text-sm tracking-wider px-4 py-4 outline-none
             transition-colors duration-200 placeholder-white/30
-            focus:border-[#e8003a] resize-y min-h-80
+            /* Erstat #e8003a med oklch i alle inputs */
+focus:border-[oklch(65%_0.23_10)] resize-y min-h-80
           "
             placeholder="Your Comment"
           />

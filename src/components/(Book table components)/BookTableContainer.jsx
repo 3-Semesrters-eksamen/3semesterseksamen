@@ -18,12 +18,20 @@ export default async function BookTableContainer({ searchParams }) {
   const eventId = params?.eventId ? parseInt(params.eventId) : null;
   const event = eventId ? await getEvent(eventId) : null;
 
+  // Hent reservationer server-side
+  let occupiedTables = [];
+  if (eventId) {
+    try {
+      const res = await fetch(`${API_URL}/reservations?eventId=${eventId}`, { cache: "no-store" });
+      const reservations = await res.json();
+      occupiedTables = Array.isArray(reservations) ? reservations.map((r) => parseInt(r.table)) : [];
+    } catch {}
+  }
+
   return (
     <div className="bg-[#111] max-w-[2200px] mx-auto">
-      <div>
-        <LilleHero className="text-3xl md:text-5xl">BOOK A TABLE</LilleHero>
-      </div>
-      <ReserveTable event={event} eventId={eventId} apiUrl={process.env.NEXT_PUBLIC_API_URL} />
+      <LilleHero className="text-3xl md:text-5xl">BOOK A TABLE</LilleHero>
+      <ReserveTable event={event} eventId={eventId} apiUrl={process.env.NEXT_PUBLIC_API_URL} initialOccupiedTables={occupiedTables} />
     </div>
   );
 }

@@ -28,12 +28,12 @@ export default function ClubGallery() {
   };
 
   return (
-    <div className="flex flex-col items-center mt-10 w-full mb-16  max-w-[2200px] mx-auto">
+    <div className="flex flex-col items-center mt-10 w-full mb-16 max-w-[2200px] mx-auto">
       <H2>NIGHT CLUB GALLERY</H2>
 
-      <div className="flex flex-wrap justify-content w-full  mt-6">
+      <div className="grid grid-cols-4 w-full mt-6">
         {gallery.map((img, index) => (
-          <div key={img.id} className="relative group cursor-pointer h-full w-1/4" onClick={() => setSelectedIndex(index)}>
+          <div key={img.id} className="relative group cursor-pointer aspect-[4/3]" onClick={() => setSelectedIndex(index)}>
             <img src={`${baseUrl}${img.asset?.url}`} alt={img.asset?.alt || "Gallery image"} className="w-full h-full object-cover" />
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
               <PinkFrame />
@@ -44,7 +44,7 @@ export default function ClubGallery() {
 
       {selectedImg && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setSelectedIndex(null)}>
-          <button onClick={goPrev} className="absolute left-40 top-1/2 -translate-y-1/2 bg-black/50 text-white border-2 border-white px-3 py-2 hover:bg-nightclub-pink hover:border-nightclub-pink  transition z-10">
+          <button onClick={goPrev} className="absolute left-40 top-1/2 -translate-y-1/2 bg-black/50 text-white border-2 border-white px-3 py-2 hover:bg-nightclub-pink hover:border-nightclub-pink transition z-10">
             ◀
           </button>
 
