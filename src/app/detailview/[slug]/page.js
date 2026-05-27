@@ -13,7 +13,6 @@ export default async function EventDetailPage({ params }) {
       <Navigation />
       <Suspense fallback={<div className="text-white p-8">Indlæser event...</div>}>
         <Detailview slug={slug} />
-        <CommentContainer />
       </Suspense>
     </main>
   );
