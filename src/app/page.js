@@ -1,14 +1,14 @@
-import Hero from "@/components/(ForsideComponents)/Hero";
-import Navigation from "@/components/(globalComponents)/Navigation";
-import WelcomeClub from "@/components/(ForsideComponents)/WelcomeClubContainer";
-import FeaturedEvents from "@/components/(ForsideComponents)/FeaturedEventsContainer";
-import ClubGallery from "@/components/(ForsideComponents)/ClubGallery";
-import Audio from "@/components/(ForsideComponents)/Audio";
-import LatestVideo from "@/components/(ForsideComponents)/LatestVideo";
-import ReviewContainer from "@/components/(ForsideComponents)/ReviewContainer";
-import NewsSubsriberContainer from "@/components/(ForsideComponents)/NewsSubscribeContainer";
-import Footer from "@/components/(footerComponents)/Footer";
 import { Suspense } from "react";
+import Hero from "@/components/(B_ForsideComponents)/(1_Hero)/Hero";
+import Navigation from "@/components/(A_NavigationComponent)/(Nav)/Navigation";
+import WelcomeClub from "@/components/(B_ForsideComponents)/(2_WelcomeInClubCards)/WelcomeClubContainer";
+import FeaturedEvents from "@/components/(B_ForsideComponents)/(3_FeauturedEvents)/FeaturedEventsContainer";
+import ClubGallery from "@/components/(B_ForsideComponents)/(4_Galleri)/ClubGallery";
+import Audio from "@/components/(B_ForsideComponents)/(5_Musik)/MusikContainer.jsx";
+import LatestVideo from "@/components/(B_ForsideComponents)/(6_Video)/LatestVideo.jsx";
+import ReviewContainer from "@/components/(B_ForsideComponents)/(7_Review)/ReviewContainer";
+import NewsSubsriberContainer from "@/components/(B_ForsideComponents)/(8_Subsrcibe)/NewsSubscribeContainer";
+import Footer from "@/components/(G_FooterComponents)/Footer";
 
 export default async function Home() {
   const testimonialsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/testimonials`, { cache: "no-store" });

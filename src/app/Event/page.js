@@ -1,7 +1,7 @@
-import EventsList from "@/components/(Events components)/EventsList";
-import Navigation from "@/components/(globalComponents)/Navigation";
-import Footer from "@/components/(footerComponents)/Footer";
-import LilleHero from "@/components/(globalComponents)/LilleHero";
+import Navigation from "@/components/(A_NavigationComponent)/(Nav)/Navigation";
+import LilleHero from "@/components/(A_NavigationComponent)/(Titles)/PageTitle";
+import EventsList from "@/components/(C_EventsComponents)/EventsList";
+import Footer from "@/components/(G_FooterComponents)/Footer";
 
 export default async function EventsPage({ searchParams }) {
   const params = await searchParams;

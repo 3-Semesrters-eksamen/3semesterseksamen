@@ -1,6 +1,6 @@
-import BookTableContainer from "@/components/(Book table components)/BookTableContainer";
-import Footer from "@/components/(footerComponents)/Footer";
-import Navigation from "@/components/(globalComponents)/Navigation";
+import Navigation from "@/components/(A_NavigationComponent)/(Nav)/Navigation";
+import BookTableContainer from "@/components/(E_BooktableComponents)/BookTableContainer";
+import Footer from "@/components/(G_FooterComponents)/Footer";
 
 export const metadata = {
   title: "Book Table — Night Club",
