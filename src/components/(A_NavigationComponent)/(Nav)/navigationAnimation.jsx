@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, useSpring, useMotionValue } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { usePathname } from "next/navigation";
 
 const DURATION = 0.4;
@@ -68,7 +68,6 @@ function RollingLink({ href, label, onMouseEnter, isActive }) {
 export default function RollingNav({ links }) {
   const navRef = useRef(null);
   const pathname = usePathname();
-  const [isHovering, setIsHovering] = useState(false);
 
   const stripeLeft = useMotionValue(0);
   const stripeWidth = useMotionValue(0);
@@ -80,13 +79,11 @@ export default function RollingNav({ links }) {
     const elRect = el.getBoundingClientRect();
     stripeLeft.set(elRect.left - navRect.left);
     stripeWidth.set(elRect.width);
-    setIsHovering(true);
   };
 
   const activeRef = useRef(null);
 
   const handleMouseLeave = () => {
-    setIsHovering(false);
     if (activeRef.current && navRef.current) {
       const navRect = navRef.current.getBoundingClientRect();
       const elRect = activeRef.current.getBoundingClientRect();
@@ -113,7 +110,7 @@ export default function RollingNav({ links }) {
           left: smoothLeft,
           width: smoothWidth,
           opacity: 1,
-          background: "linear-gradient(to right, transparent, color-nightclub-pink 20%, color-nightclub-pink 80%, transparent)",
+          background: "linear-gradient(to right, transparent, oklch(65% 0.23 10) 20%, oklch(65% 0.23 10) 80%, transparent)",
         }}
         className="absolute bottom-0 h-[1px] pointer-events-none"
       />
