@@ -25,13 +25,13 @@ const Hero = () => {
       <div className="relative z-20 flex flex-col items-center justify-center h-full gap-2">
         <div className="overflow-hidden">
           <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: DURATION, ease: EASE, delay: 0 }}>
-            <Image src="/icon/Logo.svg" alt="Logo" width={500} height={150} priority />
+            <Image src="/icon/Logo.svg" alt="Logo" width={700} height={150} priority />
           </motion.div>
         </div>
 
         <div className="overflow-hidden">
           <motion.div className="flex flex-col items-center gap-2" initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: DURATION, ease: EASE, delay: DURATION + 0.002 }}>
-            <Image src="/hero/hagt.svg" alt="Have a good time" width={500} height={20} />
+            <Image src="/hero/hagt.svg" alt="Have a good time" width={590} height={20} />
             <Image src="/bottom_line.png" alt="Bottom line" width={500} height={20} />
           </motion.div>
         </div>
