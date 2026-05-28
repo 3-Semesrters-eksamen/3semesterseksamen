@@ -6,7 +6,7 @@ import Button from "@/components/(H_GlobalComponents)/Btn";
 
 // Zod schema — definerer reglerne
 const emailSchema = z.object({
-  email: z.string().min(1, "Email er påkrævet").email("Indtast venligst en gyldig e-mail"),
+  email: z.string().min(1, "Email er påkrævet").email("Please enter a valid email"),
 });
 
 const NewsSubsriberContainer = () => {
@@ -18,7 +18,7 @@ const NewsSubsriberContainer = () => {
     const result = emailSchema.safeParse({ email });
 
     if (!result.success) {
-      setError(result.error.errors[0].message);
+      setError(result.error.issues[0]?.message || "Invalid email");
       return;
     }
 
@@ -37,10 +37,10 @@ const NewsSubsriberContainer = () => {
       } else if (res.status === 409) {
         setStatus("conflict");
       } else {
-        setError("Noget gik galt. Prøv igen.");
+        setError("Something went wrong. Please try again.");
       }
     } catch {
-      setError("Noget gik galt. Prøv igen.");
+      setError("Something went wrong. Please try again.");
     }
   };
 
@@ -53,9 +53,9 @@ const NewsSubsriberContainer = () => {
             Subscribe to our newsletter and never miss an <span className="text-nightclub-pink">Event</span>
           </p>
 
-          {status === "success" && <p className="text-green-400 text-sm text-center mb-4">Du er nu tilmeldt nyhedsbrevet!</p>}
+          {status === "success" && <p className="text-green-400 text-sm text-center mb-4">Successfully signed up for newsletter!</p>}
 
-          {status === "conflict" && <p className="text-nightclub-pink text-sm text-center mb-4">Denne e-mail er allerede tilmeldt nyhedsbrevet.</p>}
+          {status === "conflict" && <p className="text-nightclub-pink text-sm text-center mb-4">This email is already signed up for newsletter.</p>}
 
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-4">
