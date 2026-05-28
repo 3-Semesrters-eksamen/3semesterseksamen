@@ -34,7 +34,7 @@ export default function ViewEventsButton({ href = "/events", className = "" }) {
   return (
     <Link href={href} className={`inline-block ${className}`}>
       <motion.span
-        className="relative inline-flex items-center justify-center cursor-pointer px-10 py-5 "
+        className="relative inline-flex items-center justify-center cursor-pointer px-10 py-5 silver-border "
         animate={controls}
         initial="rest"
         onHoverStart={handleHoverStart}
