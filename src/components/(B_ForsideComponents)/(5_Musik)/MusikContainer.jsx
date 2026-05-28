@@ -18,12 +18,8 @@ export default function MusikContainer() {
   return (
     <div className="flex flex-col items-center w-full bg-black max-w-[2200px] mx-auto px-4 sm:px-6">
       <H2>NIGHT CLUB TRACK</H2>
-
-      <div className="w-full max-w-4xl mb-0">
+      <div className="w-full max-w-4xl flex flex-col">
         <MusikSpiller track={currentTrack} />
-      </div>
-
-      <div className="relative w-full max-w-4xl mt-0">
         <MusikListe tracks={tracks} onSelect={setCurrentTrack} currentTrack={currentTrack} />
       </div>
     </div>

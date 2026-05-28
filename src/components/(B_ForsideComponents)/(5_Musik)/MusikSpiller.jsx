@@ -6,7 +6,6 @@ import "react-h5-audio-player/lib/styles.css";
 import "@/app/audio-player.css";
 import { FaBackward, FaForward, FaRandom, FaPause } from "react-icons/fa";
 import { FaRegCirclePlay } from "react-icons/fa6";
-import PinkFrame from "@/components/(H_GlobalComponents)/PinkFrame";
 
 export default function MusikSpiller({ track }) {
   const playerRef = useRef(null);
@@ -43,7 +42,7 @@ export default function MusikSpiller({ track }) {
 
   return (
     <>
-      {/* Skjult AudioPlayer — bruges af begge layouts */}
+      {/* Skjult AudioPlayer */}
       <div className="hidden">
         <AudioPlayer
           ref={playerRef}
@@ -63,8 +62,8 @@ export default function MusikSpiller({ track }) {
         />
       </div>
 
-      {/* ── MOBIL layout — vises KUN under sm ── */}
-      <div className="flex sm:hidden flex-col items-center w-full text-white px-4">
+      {/* ── MOBIL + TABLET layout — under md ── */}
+      <div className="flex md:hidden flex-col items-center w-full text-white px-4 pb-4">
         {/* Titel */}
         <h3 className="text-sm font-semibold mb-3 tracking-widest uppercase text-center">{track.title}</h3>
 
@@ -105,18 +104,18 @@ export default function MusikSpiller({ track }) {
         </div>
 
         {/* Volume */}
-        <div className="flex items-center gap-3 w-full justify-center mb-2">
+        <div className="flex items-center gap-3 w-full justify-center">
           <span className="text-xs text-gray-400">🔊</span>
           <input type="range" min="0" max="1" step="0.01" defaultValue={1} onChange={(e) => (playerRef.current.audio.current.volume = e.target.value)} className="w-40 h-1 bg-gray-700 rounded-lg accent-nightclub-pink cursor-pointer" />
         </div>
       </div>
 
-      {/* ── DESKTOP layout — vises fra sm og op ── */}
-      <div className="hidden sm:flex items-center gap-6 border rounded-lg w-full">
-        <img src={track.image} alt={track.title} className="w-52 h-52 object-cover" />
+      {/* ── DESKTOP layout — fra md og op ── */}
+      <div className="hidden md:flex items-center gap-4 border rounded-lg w-full overflow-hidden">
+        <img src={track.image} alt={track.title} className="w-40 h-40 lg:w-52 lg:h-52 object-cover flex-shrink-0" />
 
-        <div className="flex flex-col flex-1 max-w-xl text-white pr-4">
-          <h3 className="text-sm font-semibold mb-2">{track.title}</h3>
+        <div className="flex flex-col flex-1 text-white pr-3 min-w-0">
+          <h3 className="text-sm font-semibold mb-2 truncate">{track.title}</h3>
 
           <input
             type="range"
@@ -131,23 +130,25 @@ export default function MusikSpiller({ track }) {
             className="w-full h-1 bg-gray-700 rounded-lg accent-nightclub-pink cursor-pointer"
           />
 
-          <div className="flex items-center justify-between mt-2 w-full">
-            <span className="text-sm">{currentTime}</span>
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between mt-2 w-full gap-2">
+            <span className="text-xs shrink-0">{currentTime}</span>
+
+            <div className="flex items-center gap-2">
               <button onClick={() => (playerRef.current.audio.current.currentTime -= 5)} className="hover:text-nightclub-pink transition-colors">
-                <FaBackward size={22} />
+                <FaBackward size={18} />
               </button>
-              <button onClick={togglePlay} className="w-12 h-12 flex items-center justify-center hover:text-nightclub-pink transition-colors">
-                {isPlaying ? <FaPause size={32} /> : <FaRegCirclePlay size={32} />}
+              <button onClick={togglePlay} className="w-10 h-10 flex items-center justify-center hover:text-nightclub-pink transition-colors">
+                {isPlaying ? <FaPause size={28} /> : <FaRegCirclePlay size={28} />}
               </button>
               <button onClick={() => (playerRef.current.audio.current.currentTime += 5)} className="hover:text-nightclub-pink transition-colors">
-                <FaForward size={22} />
+                <FaForward size={18} />
               </button>
               <button className="hover:text-nightclub-pink transition-colors">
-                <FaRandom size={22} />
+                <FaRandom size={18} />
               </button>
             </div>
-            <input type="range" min="0" max="1" step="0.01" defaultValue={1} onChange={(e) => (playerRef.current.audio.current.volume = e.target.value)} className="w-24 h-1 bg-gray-700 rounded-lg accent-nightclub-pink cursor-pointer" />
+
+            <input type="range" min="0" max="1" step="0.01" defaultValue={1} onChange={(e) => (playerRef.current.audio.current.volume = e.target.value)} className="w-16 lg:w-24 h-1 bg-gray-700 rounded-lg accent-nightclub-pink cursor-pointer shrink-0" />
           </div>
         </div>
       </div>
