@@ -1,4 +1,4 @@
-import RollingNav from "@/components/(I_Animations)/navigationAnimation";
+import RollingNav from "@/components/(A_NavigationComponent)/(Nav)/navigationAnimation";
 
 const links = [
   { href: "/", label: "HOME" },
