@@ -42,7 +42,6 @@ export default function MusikSpiller({ track }) {
 
   return (
     <>
-      {/* Skjult AudioPlayer */}
       <div className="hidden">
         <AudioPlayer
           ref={playerRef}
@@ -62,12 +61,9 @@ export default function MusikSpiller({ track }) {
         />
       </div>
 
-      {/* ── MOBIL + TABLET layout — under md ── */}
       <div className="flex md:hidden flex-col items-center w-full text-white px-4 pb-4">
-        {/* Titel */}
         <h3 className="text-sm font-semibold mb-3 tracking-widest uppercase text-center">{track.title}</h3>
 
-        {/* Progress bar */}
         <input
           type="range"
           min="0"
@@ -81,13 +77,11 @@ export default function MusikSpiller({ track }) {
           className="w-full h-1 bg-gray-700 rounded-lg accent-nightclub-pink cursor-pointer mb-2"
         />
 
-        {/* Tid */}
         <div className="flex justify-between w-full text-xs text-gray-400 mb-4">
           <span>{currentTime}</span>
           <span>{duration}</span>
         </div>
 
-        {/* Kontroller */}
         <div className="flex items-center justify-center gap-6 mb-4">
           <button onClick={() => (playerRef.current.audio.current.currentTime -= 5)} className="hover:text-nightclub-pink transition-colors">
             <FaBackward size={20} />
@@ -103,14 +97,12 @@ export default function MusikSpiller({ track }) {
           </button>
         </div>
 
-        {/* Volume */}
         <div className="flex items-center gap-3 w-full justify-center">
           <span className="text-xs text-gray-400">🔊</span>
           <input type="range" min="0" max="1" step="0.01" defaultValue={1} onChange={(e) => (playerRef.current.audio.current.volume = e.target.value)} className="w-40 h-1 bg-gray-700 rounded-lg accent-nightclub-pink cursor-pointer" />
         </div>
       </div>
 
-      {/* ── DESKTOP layout — fra md og op ── */}
       <div className="hidden md:flex items-center gap-4 border rounded-lg w-full overflow-hidden">
         <img src={track.image} alt={track.title} className="w-40 h-40 lg:w-52 lg:h-52 object-cover flex-shrink-0" />
 
