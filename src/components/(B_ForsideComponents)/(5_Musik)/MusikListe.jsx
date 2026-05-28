@@ -16,16 +16,15 @@ export default function MusikListe({ tracks, onSelect, currentTrack }) {
 
   return (
     <>
-      {/* ── MOBIL — under md ── */}
       <div className="flex flex-col items-center w-full md:hidden">
         <div className="relative w-full aspect-square">
-          <img src={currentTrack?.image} alt={currentTrack?.title} className="w-full h-full object-cover" />
+          <img src={currentTrack?.image} alt={currentTrack?.title} className="w-full h-full object-cover " />
           <div className="absolute inset-0 pointer-events-none">
             <PinkFrame />
           </div>
         </div>
-        <p className="text-white text-sm font-semibold tracking-widest uppercase mt-3 mb-4">{currentTrack?.title}</p>
-        <div className="flex gap-6 mb-4">
+
+        <div className="flex gap-6 mb-4 mt-4">
           <button onClick={goPrev} className="px-5 py-3 bg-black border border-white text-white hover:bg-gray-700 transition">
             ◀
           </button>
@@ -35,7 +34,6 @@ export default function MusikListe({ tracks, onSelect, currentTrack }) {
         </div>
       </div>
 
-      {/* ── DESKTOP — fra md og op ── */}
       <div className="hidden md:flex flex-row items-center justify-center pt-0">
         <button className="mr-2 px-3 py-2 bg-black border border-white text-white hover:bg-gray-700 transition shrink-0">◀</button>
 
@@ -51,7 +49,6 @@ export default function MusikListe({ tracks, onSelect, currentTrack }) {
                   </div>
                   <div className={`absolute bottom-0 left-0 w-full bg-black/60 text-white text-xs py-1 px-2 transition-opacity duration-300 truncate ${isSelected ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>{track.title}</div>
                 </div>
-                <span className="text-center mt-1 text-white text-xs truncate w-full px-1">{track.title}</span>
               </div>
             );
           })}
