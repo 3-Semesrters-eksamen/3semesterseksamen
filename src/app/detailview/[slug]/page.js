@@ -1,7 +1,7 @@
-import Detailview from "@/components/(EventsPageComponents)/Detailview";
 import { Suspense } from "react";
-import Navigation from "@/components/(globalComponents)/Navigation";
-import CommentContainer from "@/components/(EventsPageComponents)/CommentContainer";
+import Navigation from "@/components/(A_NavigationComponent)/(Nav)/Navigation";
+import Detailview from "@/components/(D_DetailEventComponents)/(1_EventDetails)/Detailview";
+import Footer from "@/components/(G_FooterComponents)/Footer";
 
 export default async function EventDetailPage({ params }) {
   const { slug } = await params;
@@ -14,6 +14,7 @@ export default async function EventDetailPage({ params }) {
       <Suspense fallback={<div className="text-white p-8">Indlæser event...</div>}>
         <Detailview slug={slug} />
       </Suspense>
+      <Footer />
     </main>
   );
 }

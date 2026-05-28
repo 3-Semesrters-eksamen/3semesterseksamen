@@ -1,9 +1,7 @@
-import ContactContainer from "@/components/(Contact us components)/ContactContainer";
-import Btn from "@/components/(globalComponents)/Btn";
-import Footer from "@/components/(footerComponents)/Footer";
-import Image from "next/image";
-import Navigation from "@/components/(globalComponents)/Navigation";
-import LilleHero from "@/components/(globalComponents)/LilleHero";
+import Navigation from "@/components/(A_NavigationComponent)/(Nav)/Navigation";
+import LilleHero from "@/components/(A_NavigationComponent)/(Titles)/PageTitle";
+import ContactUsForm from "@/components/(F_ContactUsComponents)/ContactUsForm";
+import Footer from "@/components/(G_FooterComponents)/Footer";
 
 export default function Login() {
   return (
@@ -11,7 +9,7 @@ export default function Login() {
       <>
         <Navigation />
         <LilleHero className="text-3xl md:text-5xl">CONTACT US</LilleHero>
-        <ContactContainer />
+        <ContactUsForm />
 
         <Footer />
       </>

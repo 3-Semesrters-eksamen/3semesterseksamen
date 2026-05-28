@@ -1,0 +1,55 @@
+"use client";
+
+const TABLE_IMAGE_MAP = {
+  1: "table_1.png",
+  2: "table_1.png",
+  3: "table_2.png",
+  4: "table_1.png",
+  5: "table_3.png",
+  6: "table_1.png",
+  7: "table_1.png",
+  8: "table_2.png",
+  9: "table_1.png",
+  10: "table_3.png",
+  11: "table_1.png",
+  12: "table_1.png",
+  13: "table_2.png",
+  14: "table_1.png",
+  15: "table_3.png",
+};
+
+export default function PickTable({ onSelectTable, selectedTable, occupiedTables = [] }) {
+  const tables = Array.from({ length: 15 }, (_, i) => i + 1);
+
+  return (
+    <div className="w-full px-6 sm:px-10 lg:px-20 py-10">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-10 w-full mx-auto">
+        {tables.map((id) => {
+          const isOccupied = occupiedTables.includes(id);
+          const isSelected = selectedTable === id;
+
+          return (
+            <button key={id} onClick={() => !isOccupied && onSelectTable?.(id)} disabled={isOccupied} aria-label={`Table ${id}${isOccupied ? " – occupied" : isSelected ? " – selected" : ""}`} aria-pressed={isSelected} className={["relative flex items-center justify-center bg-transparent border-none p-0 transition-all duration-150", isOccupied ? "cursor-not-allowed opacity-30 grayscale" : isSelected ? "scale-110 brightness-150 cursor-pointer" : "cursor-pointer hover:scale-110 hover:brightness-150"].join(" ")}>
+              {/* Bord-billedet */}
+              <img src={`/table/${TABLE_IMAGE_MAP[id]}`} alt={`Table ${id}`} className="w-full h-auto object-contain block" />
+
+              {/* Pink overlay når valgt */}
+              {isSelected && (
+                <div
+                  className="absolute inset-0 mix-blend-color pointer-events-none"
+                  style={{
+                    background: "oklch(65% 0.23 10)",
+                    opacity: 0.5,
+                  }}
+                />
+              )}
+
+              {/* Bordnummer */}
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-sm font-bold tracking-wide pointer-events-none drop-shadow-md">{id}</span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
