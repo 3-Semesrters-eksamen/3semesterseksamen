@@ -1,19 +1,83 @@
+"use client";
+
+import { useState } from "react";
+import { z } from "zod";
 import Button from "@/components/(H_GlobalComponents)/Btn";
 
+// Zod schema — definerer reglerne
+const emailSchema = z.object({
+  email: z.string().min(1, "Email er påkrævet").email("Indtast venligst en gyldig e-mail"),
+});
+
 const NewsSubsriberContainer = () => {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [status, setStatus] = useState(null);
+
+  const handleSubmit = async () => {
+    const result = emailSchema.safeParse({ email });
+
+    if (!result.success) {
+      setError(result.error.errors[0].message);
+      return;
+    }
+
+    setError("");
+
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/newsletters`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        setEmail("");
+      } else if (res.status === 409) {
+        setStatus("conflict");
+      } else {
+        setError("Noget gik galt. Prøv igen.");
+      }
+    } catch {
+      setError("Noget gik galt. Prøv igen.");
+    }
+  };
+
   return (
-    <main className="">
-      <div className="flex items-center justify-center px-8 py-15 pb-20 bg-black max-w-[2200px] mx-auto ">
+    <main>
+      <div className="flex items-center justify-center px-8 py-15 pb-20 bg-black max-w-[2200px] mx-auto">
         <div className="w-full max-w-[420px]">
           <p className="text-lg uppercase font-normal text-white text-center mb-[0.6rem]">WANT THE LATES NIGHT CLUB NEWS</p>
-
           <p className="text-sm text-white text-center mb-8 leading-[1.6]">
             Subscribe to our newsletter and never miss an <span className="text-nightclub-pink">Event</span>
           </p>
 
-          <div className="flex items-center gap-4">
-            <input type="text" placeholder="Enter your email" className="border-b border-white w-72 text-white placeholder:text-white/50 bg-transparent px-4 py-3 hover:border-nightclub-pink focus:outline-none" />
-            <Button label="SUBSCRIBE" className="inline-flex m-6" />
+          {status === "success" && <p className="text-green-400 text-sm text-center mb-4">Du er nu tilmeldt nyhedsbrevet!</p>}
+
+          {status === "conflict" && <p className="text-nightclub-pink text-sm text-center mb-4">Denne e-mail er allerede tilmeldt nyhedsbrevet.</p>}
+
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-4">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setError("");
+                  setStatus(null);
+                }}
+                className="border-b border-white w-72 text-white placeholder:text-white/50 bg-transparent px-4 py-3 hover:border-nightclub-pink focus:outline-none"
+              />
+              <Button label="SUBSCRIBE" onClick={handleSubmit} className="inline-flex m-6" />
+            </div>
+
+            {error && (
+              <p className="text-red-400 text-xs ml-4" role="alert">
+                {error}
+              </p>
+            )}
           </div>
         </div>
       </div>
