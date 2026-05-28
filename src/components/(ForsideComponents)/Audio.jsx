@@ -8,6 +8,8 @@ const tracks = [
   { title: "Sang 1", src: "/media/black-box-funky.mp3", image: "/contentImg/track1.jpg" },
   { title: "Sang 2", src: "/media/euphoria.mp3", image: "/contentImg/track2.jpg" },
   { title: "Sang 3", src: "/media/fashion-red-tape.mp3", image: "/contentImg/track4.jpg" },
+  { title: "Sang 1", src: "/media/black-box-funky.mp3", image: "/contentImg/track1.jpg" },
+  { title: "Sang 2", src: "/media/euphoria.mp3", image: "/contentImg/track2.jpg" },
 ];
 
 export default function Audio() {
