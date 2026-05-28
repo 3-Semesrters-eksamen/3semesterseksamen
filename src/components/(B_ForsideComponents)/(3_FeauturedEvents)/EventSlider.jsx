@@ -40,7 +40,7 @@ export default function EventSlider({ events = [] }) {
                   </Link>
                 </div>
 
-                <div className="flex-1 bg-black/100 p-6 flex flex-col justify-end">
+                <div className="flex-1 bg-black/80  p-6 flex flex-col justify-end">
                   <h3 className="text-white font-bold tracking-widest text-lg mb-2 translate-y-[-6px]">{event.title}</h3>
                   <p className="text-gray-300 text-xs leading-relaxed mb-3 translate-y-[-6px]">{event.excerpt}</p>
                   <p className="text-nightclub-pink text-xs translate-y-[-6px]">
