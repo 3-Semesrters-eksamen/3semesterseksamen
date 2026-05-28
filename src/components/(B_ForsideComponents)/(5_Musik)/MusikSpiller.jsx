@@ -1,13 +1,16 @@
 "use client";
 
 import { useRef, useState } from "react";
-import AudioPlayer, { RHAP_UI } from "react-h5-audio-player";
+import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import "@/app/audio-player.css";
+import { FaBackward, FaForward, FaRandom, FaPause } from "react-icons/fa";
+import { FaRegCirclePlay } from "react-icons/fa6";
 
 export default function MusikSpiller({ track }) {
   const playerRef = useRef(null);
   const [currentTime, setCurrentTime] = useState("0:00");
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const formatTime = (sec) => {
     if (!sec) return "0:00";
@@ -19,35 +22,73 @@ export default function MusikSpiller({ track }) {
   };
 
   return (
-    <div className="flex items-center gap-6 p-4 border rounded-lg w-full">
+    <div className="flex items-center gap-6 border rounded-lg w-full">
       {/* Venstre: Billede */}
       <img src={track.image} alt={track.title} className="w-52 h-52 object-cover" />
 
       {/* Højre side */}
       <div className="flex flex-col flex-1 max-w-xl text-white">
         {/* Titel */}
-        <h2 className="text-xl font-semibold mb-2">{track.title}</h2>
+        <h3 className="text-ms font-semibold mb-2">{track.title}</h3>
 
-        {/* Progress bar */}
-        <AudioPlayer ref={playerRef} src={track.src} autoPlay={false} showJumpControls={false} customVolumeControls={[]} onListen={(e) => setCurrentTime(formatTime(e.target.currentTime))} />
+        {/* Progress bar (kun progress bar, ingen knapper) */}
+        <AudioPlayer
+          ref={playerRef}
+          src={track.src}
+          autoPlay={false}
+          showJumpControls={false}
+          customAdditionalControls={[]}
+          customControlsSection={[]} // ← Ingen standardknapper
+          customVolumeControls={[]} // ← Volume fjernet fra player
+          customProgressBarSection={[]}
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          onListen={(e) => setCurrentTime(formatTime(e.target.currentTime))}
+        />
+        {/* Custom track bar */}
+        <input
+          type="range"
+          min="0"
+          max={playerRef.current?.audio?.current?.duration || 0}
+          value={playerRef.current?.audio?.current?.currentTime || 0}
+          onChange={(e) => {
+            playerRef.current.audio.current.currentTime = e.target.value;
+          }}
+          className="w-full h-1 bg-gray-700 rounded-lg accent-nightclub-pink cursor-pointer"
+        />
 
         {/* Kontrol-linje */}
-        <div className="flex items-center justify-between mt-3">
-          {/* Tid */}
-          <span className="text-sm w-16">{currentTime}</span>
+        <div className="flex items-center justify-between mt-2 w-full">
+          {/* Venstre: Tid */}
+          <span className="text-sm">{currentTime}</span>
 
-          {/* Rewind / Play / Forward */}
-          <button onClick={() => (playerRef.current.audio.current.currentTime -= 5)}>⏪</button>
+          {/* Midten: Rewind - Play - Forward - Shuffle */}
+          <div className="flex items-center gap-3">
+            <button onClick={() => (playerRef.current.audio.current.currentTime -= 5)} className="hover:text-nightclub-pink transition-colors">
+              <FaBackward size={22} />
+            </button>
 
-          <button onClick={() => (playerRef.current.audio.current.paused ? playerRef.current.audio.current.play() : playerRef.current.audio.current.pause())} className="relative w-12 h-12 flex items-center justify-center">
-            <img src="/icon/Play_btn.svg" className="w-10 h-10" />
-          </button>
-          <button onClick={() => (playerRef.current.audio.current.currentTime += 5)}>⏩</button>
-          {/* Shuffle */}
-          <button className="text-lg">🔀</button>
+            <button
+              onClick={() => {
+                const audio = playerRef.current.audio.current;
+                audio.paused ? audio.play() : audio.pause();
+              }}
+              className="w-12 h-12 flex items-center justify-center hover:text-nightclub-pink transition-colors"
+            >
+              {isPlaying ? <FaPause size={32} /> : <FaRegCirclePlay size={32} />}
+            </button>
 
-          {/* Volume */}
-          <RHAP_UI.VOLUME_CONTROLS />
+            <button onClick={() => (playerRef.current.audio.current.currentTime += 5)} className="hover:text-nightclub-pink transition-colors">
+              <FaForward size={22} />
+            </button>
+
+            <button className="hover:text-nightclub-pink transition-colors">
+              <FaRandom size={22} />
+            </button>
+          </div>
+
+          {/* Højre: Volume */}
+          <input type="range" min="0" max="1" step="0.01" defaultValue={1} onChange={(e) => (playerRef.current.audio.current.volume = e.target.value)} className=" h-1 bg-gray-700 rounded-lg accent-nightclub-pink cursor-pointer" />
         </div>
       </div>
     </div>
