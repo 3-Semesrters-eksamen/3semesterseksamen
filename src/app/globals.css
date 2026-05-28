@@ -17,8 +17,7 @@
 }
 
 .silver-border {
-  /* Vi henter farverne fra dit Tailwind system her */
-  background-image: linear-gradient(to bottom, theme("colors.slate.400"), theme("colors.slate.100"), theme("colors.slate.600"));
+  background-image: linear-gradient(to bottom, oklch(70% 0.01 264), oklch(95% 0.01 264), oklch(45% 0.01 264));
 }
 
 /* max-w-[1200px] mx-auto px-4 */
