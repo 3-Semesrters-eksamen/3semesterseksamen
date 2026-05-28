@@ -13,7 +13,7 @@ export default function MusikListe({ tracks, onSelect, currentTrack }) {
           const isSelected = currentTrack?.title === track.title;
 
           return (
-            <div key={i} className="flex flex-col items-center cursor-pointer w-[1.5rem] " onClick={() => onSelect(track)}>
+            <div key={i} className="flex flex-col items-center cursor-pointer w-[11.5rem] " onClick={() => onSelect(track)}>
               <div className="relative w-48 h-48 group">
                 <img src={track.image} className="w-full h-full object-cover shadow" />
 
