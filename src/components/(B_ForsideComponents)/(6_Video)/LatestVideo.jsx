@@ -19,10 +19,12 @@ export default function LatestVideo() {
   // Reset når video skifter
   useEffect(() => {
     setIsPlaying(false);
-    videoRef.current?.pause();
+    if (videoRef.current) {
+      videoRef.current?.pause();
+      videoRef.current?.load();
+    }
   }, [currentIndex]);
 
-  // Opdater tid tilbage
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -60,7 +62,6 @@ export default function LatestVideo() {
       <H2>LATEST VIDEO</H2>
 
       <div className=" relative w-full h-[200px] sm:h-[280px] md:h-[360px] lg:w-[900px] lg:h-[500px] overflow-hidden">
-        {/* Thumbnail overlay */}
         {!isPlaying && (
           <div className="absolute inset-0 z-10 flex items-center justify-center cursor-pointer" onClick={togglePlay}>
             <img src={videos[currentIndex].thumb} className="w-full h-full object-cover" />
@@ -68,25 +69,30 @@ export default function LatestVideo() {
           </div>
         )}
 
-        {/* Video */}
         <video key={currentIndex} ref={videoRef} className="w-full h-full object-cover cursor-pointer z-40" muted playsInline controls={false} onClick={togglePlay}>
           <source src={videos[currentIndex].src} type="video/mp4" />
         </video>
 
-        {/* PinkFrame */}
         <div className="absolute inset-0 pointer-events-none z-20">
           <PinkFrame />
         </div>
 
-        {/* Timer */}
         <div className="absolute bottom-2 right-2 bg-black/60 text-white px-3 py-1 rounded text-sm z-60">{timeLeft}</div>
       </div>
 
-      {/* Buttons */}
       <div className="flex gap-4 mt-6 relative z-20">
         <button onClick={() => setCurrentIndex((i) => (i - 1 + videos.length) % videos.length)} className="px-2 py-2 bg-black border border-white text-white hover:bg-gray-700 transition">
           <BiSolidLeftArrow />
         </button>
+
+        {videos.map((_, i) => {
+          const pageNum = i + 1;
+          return (
+            <button key={pageNum} onClick={() => setCurrentIndex(i)} className={`hover:text-pink-500 ${currentIndex === i ? "text-pink-500" : "text-white"}`}>
+              {pageNum}
+            </button>
+          );
+        })}
 
         <button onClick={() => setCurrentIndex((i) => (i + 1) % videos.length)} className="px-2 py-2 bg-black border border-white text-white hover:bg-gray-700 transition">
           <BiSolidRightArrow />
