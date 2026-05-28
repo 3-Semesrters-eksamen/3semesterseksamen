@@ -6,7 +6,7 @@ import Button from "@/components/(H_GlobalComponents)/Btn";
 
 // Zod schema — definerer reglerne
 const emailSchema = z.object({
-  email: z.string().min(1, "Email er påkrævet").email("Please enter a valid email"),
+  email: z.string().min(1, "Please enter a email").email("Please enter a valid email"),
 });
 
 const NewsSubsriberContainer = () => {
