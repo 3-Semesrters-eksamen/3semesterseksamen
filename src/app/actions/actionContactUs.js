@@ -1,34 +1,35 @@
 "use server";
-const actionContactUs = async (prevState, formData) => {
-  await new Promise((resolve) => setTimeout(resolve, 1500));
-  const resname = formData.get("resname");
+import { z } from "zod";
 
-  /*EFTER FETCH SKAL DER VÆRE NOGET? FOR DEN REGISTRERE IKKE NOGET SOM SUCESS*/
-  try {
-    const res = await fetch({
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: { resname },
-      }),
-      cache: "no-store",
-    });
+const contactSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email"),
+  message: z.string().min(5, "Message must be at least 5 characters"),
+});
 
-    if (!res.ok) {
-      return { success: false, message: "Please insert mail" };
-    }
+const actionContactUs = async (_, formData) => {
+  const result = contactSchema.safeParse({
+    name: formData.get("name"),
+    email: formData.get("email"),
+    message: formData.get("message"),
+  });
 
-    const data = await res.json();
-    if (!resname) {
-      return {
-        success: false,
-        message: "Mail missing",
-      };
-    }
-    return { success: true, message: `Mail ${resname} submittet` };
-  } catch (error) {
-    return { success: false, message: "Somthing went wrong" };
+  if (!result.success) {
+    const errors = result.error.flatten().fieldErrors;
+    return {
+      success: false,
+      errors: {
+        name: errors.name?.[0],
+        email: errors.email?.[0],
+        message: errors.message?.[0],
+      },
+    };
   }
+
+  return {
+    success: true,
+    message: "Thanks for contacting us. We will get back to you as fast as possible.",
+  };
 };
 
 export default actionContactUs;
