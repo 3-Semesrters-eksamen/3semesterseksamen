@@ -16,7 +16,7 @@ export default function MusikContainer() {
   const [currentTrack, setCurrentTrack] = useState(tracks[0]);
 
   return (
-    <div className="flex flex-col items-center w-full bg-black max-w-[2200px] mx-auto">
+    <div className="flex flex-col items-center w-full bg-black max-w-[2200px] mx-auto px-4 sm:px-6">
       <H2>NIGHT CLUB TRACK</H2>
 
       <div className="w-full max-w-4xl mb-0">
