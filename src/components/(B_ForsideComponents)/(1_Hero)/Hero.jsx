@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import BookTableBtn from "@/components/(B_ForsideComponents)/(1_Hero)/BookTableBtn";
 import ViewEventBtn from "@/components/(B_ForsideComponents)/(1_Hero)/ViewEventBtn";
@@ -9,13 +9,20 @@ const DURATION = 1.1;
 const EASE = [0.56, 0, 0.24, 1];
 
 const Hero = () => {
-  const [bgImage] = useState(() => (Math.random() > 0.5 ? "/hero/header_bg_1.jpg" : "/hero/header_bg_2.jpg"));
+  const [bgImage, setBgImage] = useState("/hero/header_bg_1.jpg");
+
+  useEffect(() => {
+    const randomImg = Math.random() > 0.5 ? "/hero/header_bg_1.jpg" : "/hero/header_bg_2.jpg";
+    setBgImage(randomImg);
+  }, []);
 
   return (
-    <section className=" max-w-[2200px] mx-auto relative w-full pt-20 h-[47rem] md:h-[28rem] lg:h-[36rem] bg-black">
-      <div className="absolute inset-0 bg-black/70 z-10  " />
+    <section className="max-w-[2200px] mx-auto relative w-full pt-20 h-[47rem] md:h-[28rem] lg:h-[36rem] bg-black overflow-hidden">
+      <div className="absolute inset-0 bg-black/70 z-10" />
+
       <Image src={bgImage} alt="Night Club" fill className="object-cover" priority />
-      <div className="relative z-10 flex flex-col items-center justify-center h-full gap-2">
+
+      <div className="relative z-20 flex flex-col items-center justify-center h-full gap-2">
         <div className="overflow-hidden">
           <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: DURATION, ease: EASE, delay: 0 }}>
             <Image src="/icon/Logo.svg" alt="Logo" width={500} height={150} priority />
