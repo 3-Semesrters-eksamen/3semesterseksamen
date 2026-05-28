@@ -72,7 +72,7 @@ export default function EventSlider({ events = [] }) {
         ))}
       </div>
 
-      <div className="flex justify-center gap-2 mt-8">
+      <div className="flex justify-center gap-2 mt-8 md:hidden">
         {Array.from({ length: totalSlides }, (_, i) => (
           <button key={i} onClick={() => setCurrent(i)} className={`w-3 h-3 transition-colors duration-300 ${current === i ? "bg-nightclub-pink" : "bg-gray-500 hover:bg-gray-400"}`} />
         ))}

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import Btn from "@/components/(H_GlobalComponents)/Btn";
 
-const inputBase = "bg-transparent border border-white/20 text-white placeholder:text-gray-500 text-[13px]font-sans px-4 py-3 outline-none w-full transition-colors focus:border-white/60";
+const inputBase = "bg-transparent border border-white text-white placeholder:text-gray-500 text-[13px]font-sans px-4 py-3 outline-none w-full transition-colors focus:border-white/60";
 const inputErr = "bg-transparent border border-nightclub-pink text-white placeholder:text-gray-500 text-[13px] font-sans px-4 py-3 outline-none w-full";
 
 export default function ReserveForm({ selectedTable, eventId, eventDate, onTableConflict, onDatePick, apiUrl }) {
@@ -115,10 +115,10 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
     <>
       {showModal && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 px-4">
-          <div className="bg-black border border-gray-500 rounded-lg p-10 max-w-sm w-full flex flex-col items-center text-center shadow-2xl">
+          <div className="bg-black border border-white rounded-lg p-10 max-w-sm w-full flex flex-col items-center text-center shadow-2xl">
             <IoCheckmarkCircle className=" text-nightclub-pink text-6xl mb-5" />
-            <h3 className="text-white  font-bold text-xl tracking-widest mb-3 uppercase">Reservation Confirmed</h3>
-            <p className="text-gray-400  text-sm leading-relaxed mb-8">
+            <h3 className="text-white font-bold text-xl tracking-widest mb-3 uppercase">Reservation Confirmed</h3>
+            <p className="text-gray-400 text-sm leading-relaxed mb-8">
               Table {reservedTable} has been reserved.
               <br />
               We look forward to seeing you!
@@ -128,7 +128,7 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
                 setShowModal(false);
                 window.location.reload();
               }}
-              className="border border-gray-500 text-gray-300  text-[11px] tracking-[0.25em] px-8 py-3 uppercase hover:border-nightclub-pink hover:text-nightclub-pink transition-colors"
+              className="border border-white text-gray-300 text-[11px] tracking-[0.25em] px-8 py-3 uppercase hover:border-nightclub-pink hover:text-nightclub-pink transition-colors"
             >
               CLOSE
             </button>
