@@ -61,3 +61,5 @@ import Button from "@/components/(globalComponents)/Button";
 
 // Som knap der kalder en funktion
 <Button onClick={() => setIsOpen(true)} label="SE MERE" />
+
+test
